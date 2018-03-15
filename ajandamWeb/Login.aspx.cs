@@ -12,9 +12,12 @@ public partial class Login : System.Web.UI.Page
 
     }
 
+
+
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         string email = String.Format("{0}", Request.Form["email"]);
         string password = String.Format("{0}", Request.Form["password"]);
+
     }
 }
