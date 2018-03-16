@@ -13,6 +13,7 @@ public partial class Admin : System.Web.UI.Page
     {
         object user = Session["username"];
 
+
         if (user == null)
         {
             Response.Redirect("Login.aspx");
@@ -24,17 +25,18 @@ public partial class Admin : System.Web.UI.Page
     }
 
     public void getData()
-     {
-        string username = Session["username"].ToString();
-        string Url = $"http://spring-kou-service.herokuapp.com/lessons/{username}/academicianUsername";
-        
+    {
+        string Url = "http://spring-kou-service.herokuapp.com/api/login";
+
+        string myParameters = $@"username={Session["username"]}&password={Session["password"]}";
 
         using (WebClient wc = new WebClient())
         {
             wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-            string HtmlResult = wc.DownloadString(Url);
+            string HtmlResult = wc.UploadString(Url, myParameters);
             var JSON = JsonConvert.DeserializeObject(HtmlResult);
-            json.InnerHtml = JSON.ToString();
+           
         }
+
     }
 }

@@ -42,7 +42,8 @@ public partial class Login : System.Web.UI.Page
             }
             else
             {
-                Session.Add("username", "asayar");
+                Session.Add("username", email);
+                Session.Add("password", password);
                 Response.Redirect("Admin.aspx");
             }
         }
