@@ -33,11 +33,11 @@
                     </div>
                     <div class="panel-body">
                         <span></span>
-                         <div id="alertMessage" runat="server" role="alert" style="display: none; text-align: center;">
+                         <div id="alertMessage" runat="server" role="alert" syle="display: none; text-align: center;">
                         </div>  
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" required placeholder="&#xf007;  E-mail" id="email"
+                                <input class="form-control" required placeholder="&#xf007;  Kullanıcı Adı" id="email"
                                     type="text" style="font-family: Arial,FontAwesome" runat="server">
                             </div>
                             <div class="form-group">
@@ -47,11 +47,6 @@
                             
                             <asp:Button Class="btn btn-lg btn-success btn-block" ID="btnLogin" runat="server" Text="Giriş" OnClick="btnLogin_Click" />
                         </fieldset>
-
-                        <div style="text-align: center;">
-                            <a href="/index.php">Ana Sayfaya dön.</a>
-                            
-                        </div>
                     </div>
                 </div>
             </div>
