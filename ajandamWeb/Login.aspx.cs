@@ -36,7 +36,10 @@ public partial class Login : System.Web.UI.Page
 
             if (HtmlResult == "{}")
             {
-                Response.Redirect("Login.aspx");
+             
+                alertMessage.Style.Remove("display");
+                string errorMessage = "<div style='text-align:center' class='alert alert-danger'><b>Kullanıcı Adı veya Şifre yanlış<b></div>";
+                alertMessage.InnerHtml = errorMessage;
             }
             else
             {

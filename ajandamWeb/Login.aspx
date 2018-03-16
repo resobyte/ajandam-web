@@ -21,8 +21,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="panel panel-default login">
                     <div class="panel-heading">
-                        <div id="alertMessage" class="alert alert-danger" role="alert" style="display: none; text-align: center;">
-                        </div>
+                       
                         <br>
                         <div class="row-fluid user-row">
                             <img width="100" height="100" src="./img/koub.png" />
@@ -34,7 +33,8 @@
                     </div>
                     <div class="panel-body">
                         <span></span>
-
+                         <div id="alertMessage" runat="server" class="alert alert-danger" role="alert" style="display: none; text-align: center;">
+                        </div>  
                         <fieldset>
                             <div class="form-group">
                                 <input class="form-control" required placeholder="&#xf007;  E-mail" id="email"
