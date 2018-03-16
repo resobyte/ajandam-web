@@ -39,4 +39,10 @@ public partial class Admin : System.Web.UI.Page
         }
 
     }
+
+    protected void logout_ServerClick(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Redirect("Login.aspx");
+    }
 }

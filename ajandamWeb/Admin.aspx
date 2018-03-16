@@ -34,17 +34,17 @@
                     <span class="icon-bar"></span>
                 </button>
                 
-					        <a class="navbar-brand" href="index.php" style="padding: 1px 8px;"><img
-                    src="img/kou_logo.png" alt="KOÜ" width="50" height="50"/></img> <a href="index.php" target="_blank" 
-                    class="navbar-brand">Bilgisayar Mühendisligi
+					        <a class="navbar-brand" href="Admin.aspx" style="padding: 1px 8px;"><img
+                    src="img/kou_logo.png" alt="KOÜ" width="50" height="50"/></img> <a href="Admin.aspx" 
+                    class="navbar-brand">Ajandam Akademisyen Paneli
                   </a>
-        
+       
 				</div>
 
 				
           <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown nav-item"><a>Sayın,<b> <?php echo $login_session_name?></b> Hoşgeldiniz!</a></li>
-                <li class="dropdown nav-item"><a href="logout.php"><i class="fa fa-power-off"></i>  Çıkış</a></li>
+                <li class="dropdown nav-item"><a>Sayın,<b> </b> Hoşgeldiniz!</a></li>
+                <li class="dropdown nav-item"><a id="logout" runat="server" onserverclick="logout_ServerClick"><i class="fa fa-power-off"></i>  Çıkış</a></li>
             </ul>
 				
 			<div class="navbar-default sidebar" role="navigation">
