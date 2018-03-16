@@ -33,7 +33,7 @@
                     </div>
                     <div class="panel-body">
                         <span></span>
-                         <div id="alertMessage" runat="server" class="alert alert-danger" role="alert" style="display: none; text-align: center;">
+                         <div id="alertMessage" runat="server" role="alert" style="display: none; text-align: center;">
                         </div>  
                         <fieldset>
                             <div class="form-group">
