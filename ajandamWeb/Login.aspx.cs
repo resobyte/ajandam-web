@@ -35,14 +35,14 @@ public partial class Login : System.Web.UI.Page
             var JSON = JsonConvert.DeserializeObject(HtmlResult);
 
             if (HtmlResult == "{}")
-            {
-             
+            {             
                 alertMessage.Style.Remove("display");
                 string errorMessage = "<div style='text-align:center' class='alert alert-danger'><b>Kullanıcı Adı veya Şifre yanlış<b></div>";
                 alertMessage.InnerHtml = errorMessage;
             }
             else
             {
+                Session.Add("username", "asayar");
                 Response.Redirect("Admin.aspx");
             }
         }
