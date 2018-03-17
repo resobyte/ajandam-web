@@ -7,18 +7,18 @@
 
     <title>Ajandam Admin Paneli</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/panel.css" />
     <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css" />
 
-    <link href="./assets/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="./assets/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet"/>
     <script type="text/javascript" src="./assets/jquery/jquery.js"></script>
 
 
-    <link href="./assets/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <link href="./assets/datatables-responsive/dataTables.responsive.css" rel="stylesheet"/>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
@@ -65,7 +65,12 @@
                 <!-- /.sidebar-collapse -->
             </div>
 		</nav>
-    
+        <div id="page-wrapper"> 
+            <div id="lessons" runat="server">
+                
+            </div>
+            
+        </div>
     <form id="form1" runat="server">
         <div id="json" runat="server">
         </div>
