@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -21,6 +23,7 @@ public partial class Admin : System.Web.UI.Page
         else
         {
             getData();
+            
         }
     }
 
@@ -34,8 +37,10 @@ public partial class Admin : System.Web.UI.Page
         {
             wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
             string HtmlResult = wc.UploadString(Url, myParameters);
-            var JSON = JsonConvert.DeserializeObject(HtmlResult);
-           
+            JObject rss = JObject.Parse(HtmlResult);
+            string rssName = (string)rss["data"][0]["name"];
+            string rssSurname = (string)rss["data"][0]["surname"];
+            username.InnerHtml = rssName + " " + rssSurname;
         }
 
     }
