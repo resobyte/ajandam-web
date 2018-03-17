@@ -44,7 +44,7 @@
 				
           <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown nav-item"><a>Sayın,<b> </b> Hoşgeldiniz!</a></li>
-                <li class="dropdown nav-item"><a id="logout" runat="server" onserverclick="logout_ServerClick"><i class="fa fa-power-off"></i>  YeniÇıkış</a></li>
+                <li class="dropdown nav-item"><a id="logout" runat="server" onserverclick="logout_ServerClick"><i class="fa fa-power-off"></i>  Çıkış</a></li>
             </ul>
 				
 			<div class="navbar-default sidebar" role="navigation">
