@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 public partial class Login : System.Web.UI.Page
 {
@@ -26,28 +27,30 @@ public partial class Login : System.Web.UI.Page
 
         string myParameters = $@"username={email}&password={password}";
 
-        
+
 
         using (WebClient wc = new WebClient())
         {
             wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
             string HtmlResult = wc.UploadString(Url, myParameters);
-            var JSON = JsonConvert.DeserializeObject(HtmlResult);
-
+            JObject rss = JObject.Parse(HtmlResult);
+            
             if (HtmlResult == "{}")
-            {             
+            {
                 alertMessage.Style.Remove("display");
                 string errorMessage = "<div style='text-align:center' class='alert alert-danger'><b>Kullanıcı Adı veya Şifre yanlış<b></div>";
                 alertMessage.InnerHtml = errorMessage;
             }
             else
             {
+                string ID = (string)rss["data"][0]["id"];
                 Session.Add("username", email);
                 Session.Add("password", password);
-                Response.Redirect("Admin.aspx");
+                Session.Add("ID", ID);
+                Response.Redirect("AdminLayout.aspx");
             }
         }
-        
-       
+
+
     }
 }

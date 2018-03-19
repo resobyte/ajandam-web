@@ -56,9 +56,10 @@ public partial class Admin : System.Web.UI.Page
         }
         else
         {
-            getLesson();
-            getAnnouncements();
+            //getLesson();
+           // getAnnouncements();
         }
+
     }
 
     public void getLesson()
@@ -73,7 +74,6 @@ public partial class Admin : System.Web.UI.Page
             wc.Encoding = System.Text.Encoding.UTF8;
             string HtmlResult = wc.UploadString(Url, myParameters);
             JObject rss = JObject.Parse(HtmlResult);
-            rssID = (string)rss["data"][0]["id"];
             string rssName = (string)rss["data"][0]["name"];
             string rssSurname = (string)rss["data"][0]["surname"];
 
@@ -105,15 +105,15 @@ public partial class Admin : System.Web.UI.Page
 
     public void getAnnouncements()
     {
-        string Url = $"http://spring-kou-service.herokuapp.com/api/announcement/academician?academicianId={rssID}";
-        string myParameters =rssID;
+        
+        string Url = $"http://spring-kou-service.herokuapp.com/api/announcement/academician?academicianId={Session["ID"]}";
         using (WebClient wc = new WebClient())
         {
             wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
             wc.Encoding = System.Text.Encoding.UTF8;
             string HtmlResult = wc.DownloadString(Url);
             JObject rss = JObject.Parse(HtmlResult);
-          
+
             foreach (var announcements in rss["duyurular"])
             {
                 announcementsTitle.Add((string)announcements["title"]);
@@ -132,4 +132,13 @@ public partial class Admin : System.Web.UI.Page
         }
     }
 
+    protected void myLessons_ServerClick(object sender, EventArgs e)
+    {
+        getLesson();
+    }
+
+    protected void myAnnouncements_ServerClick(object sender, EventArgs e)
+    {
+        getAnnouncements();
+    }
 }
