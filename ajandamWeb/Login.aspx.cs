@@ -32,6 +32,7 @@ public partial class Login : System.Web.UI.Page
         using (WebClient wc = new WebClient())
         {
             wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+            wc.Encoding = System.Text.Encoding.UTF8;
             string HtmlResult = wc.UploadString(Url, myParameters);
             JObject rss = JObject.Parse(HtmlResult);
             
@@ -44,10 +45,14 @@ public partial class Login : System.Web.UI.Page
             else
             {
                 string ID = (string)rss["data"][0]["id"];
+                string rssName = (string)rss["data"][0]["name"];
+                string rssSurname = (string)rss["data"][0]["surname"];
                 Session.Add("username", email);
                 Session.Add("password", password);
+                Session.Add("name", rssName);
+                Session.Add("surname", rssSurname);
                 Session.Add("ID", ID);
-                Response.Redirect("AdminLayout.aspx");
+                Response.Redirect("Admin.aspx");
             }
         }
 
