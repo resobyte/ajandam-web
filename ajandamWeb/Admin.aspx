@@ -120,7 +120,7 @@
                     <ul id="sidebarnav">
                         <li><a class="waves-effect waves-dark" href="index.html" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
                         </li>
-                        <li><a class="waves-effect waves-dark" href="pages-profile.html" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Derslerim</span></a>
+                        <li><a class="waves-effect waves-dark" href="Lessons.aspx" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Derslerim</span></a>
                         </li>
                         <li><a class="waves-effect waves-dark" href="table-basic.html" aria-expanded="false"><i class="mdi mdi-bullhorn"></i><span class="hide-menu">Duyurular</span></a>
                         </li>

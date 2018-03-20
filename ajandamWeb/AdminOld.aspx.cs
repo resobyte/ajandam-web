@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 
 public partial class Admin : System.Web.UI.Page
 {
+    List<string> lessonId = new List<string>();
     List<string> lessonName = new List<string>();
     List<string> lessonClock = new List<string>();
     List<string> lessonDay = new List<string>();
