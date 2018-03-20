@@ -75,6 +75,7 @@ public partial class Lessons : System.Web.UI.Page
 
             foreach (var lessons in rss["lessons"])
             {
+                lessonId.Add((string)lessons["id"]);
                 lessonName.Add((string)lessons["name"]);
                 lessonClock.Add((string)lessons["clock"]);
                 lessonDay.Add((string)lessons["day"]);
@@ -83,7 +84,7 @@ public partial class Lessons : System.Web.UI.Page
 
             for (int i = 0; i < lessonName.Count; i++)
             {
-                lessonsDiv += $"<tr><td>{lessonName[i]}</td><td>{lessonDay[i]}</td><td>{lessonClock[i]}</td><td>{lessonLocation[i]}</td></tr>";
+                lessonsDiv += $"<tr><td><a href='' id='{lessonId[i]}'>{lessonName[i]}</a></td><td>{lessonDay[i]}</td><td>{lessonClock[i]}</td><td>{lessonLocation[i]}</td></tr>";
             }
             lessonsDiv += "</tbody></table>";
             myLessons.InnerHtml = lessonsDiv;
@@ -93,7 +94,7 @@ public partial class Lessons : System.Web.UI.Page
             lessonDay.Clear();
             lessonLocation.Clear();
 
-            foreach (var lessons in rss["lessons"])
+            foreach (var lessons in rss["lessons"]) 
             {
                 string toDays=(string)lessons["day"];
                 if ( toDays == Convert.ToString(days[day]))
@@ -109,7 +110,7 @@ public partial class Lessons : System.Web.UI.Page
             {
                 for (int i = 0; i < lessonName.Count; i++)
                 {
-                    lessonstodayDiv += $"<tr><td>{lessonName[i]}</td><td>{lessonDay[i]}</td><td>{lessonClock[i]}</td><td>{lessonLocation[i]}</td></tr>";
+                    lessonstodayDiv += $"<tr><td><a href='' id='{lessonId[i]}'>{lessonName[i]}</a></td><td>{lessonDay[i]}</td><td>{lessonClock[i]}</td><td>{lessonLocation[i]}</td></tr>";
                 }
                 lessonstodayDiv += "</tbody></table>";
                 todaymyLessons.InnerHtml = lessonstodayDiv;
