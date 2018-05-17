@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Lessons.aspx.cs" Inherits="Lessons" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Announcement.aspx.cs" Inherits="Lessons" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -115,7 +115,7 @@
                         </li>
                         <li><a class="waves-effect waves-dark" href="Lessons.aspx" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Derslerim</span></a>
                         </li>
-                        <li><a class="waves-effect waves-dark" href="Announcement.aspx" aria-expanded="false"><i class="mdi mdi-bullhorn"></i><span class="hide-menu">Duyurular</span></a>
+                        <li><a class="waves-effect waves-dark" href="table-basic.html" aria-expanded="false"><i class="mdi mdi-bullhorn"></i><span class="hide-menu">Duyurular</span></a>
                         </li>
                         <li><a class="waves-effect waves-dark" href="icon-material.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Profilim</span></a>
                         </li>
@@ -157,10 +157,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Derslerim</h3>
+                        <h3 class="text-themecolor m-b-0 m-t-0">Duyurularım</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Derslerim</li>
+                            <li class="breadcrumb-item active">Duyurularım</li>
                         </ol>
                     </div>
                 </div>
@@ -170,21 +170,7 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <div class="row">
-                    <!-- column -->
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-block">
-                                <h4 class="card-title">Bugünki Derslerim</h4>
-                               
-                                <div class="table-responsive" id="todaymyLessons" runat="server">
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                                
+                              
                 
                 
                 <div class="row">
@@ -192,9 +178,9 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-block">
-                                <h4 class="card-title">Derslerim</h4>
+                                <h4 class="card-title">Duyurularım</h4>
                                
-                                <div class="table-responsive" id="myLessons" runat="server">
+                                <div class="table-responsive" id="myAnnouncement" runat="server">
                                    
                                 </div>
                             </div>
