@@ -115,7 +115,7 @@
                         </li>
                         <li><a class="waves-effect waves-dark" href="Lessons.aspx" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Derslerim</span></a>
                         </li>
-                        <li><a class="waves-effect waves-dark" href="table-basic.html" aria-expanded="false"><i class="mdi mdi-bullhorn"></i><span class="hide-menu">Duyurular</span></a>
+                        <li><a class="waves-effect waves-dark" href="Announcement.aspx" aria-expanded="false"><i class="mdi mdi-bullhorn"></i><span class="hide-menu">Duyurular</span></a>
                         </li>
                         <li><a class="waves-effect waves-dark" href="icon-material.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Profilim</span></a>
                         </li>
