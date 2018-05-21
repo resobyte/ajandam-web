@@ -11,7 +11,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-   <link rel="icon" type="image/png" sizes="16x16" href="img/kou_logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/kou_logo.png">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Ajandam Web</title>
     <!-- Bootstrap Core CSS -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -55,8 +56,8 @@
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
 
                             <!-- Light Logo icon -->
-                           <%-- <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />--%>
-                            Ajandam ICO
+                             <img src="../img/logo.png" alt="homepage" class="light-logo" width="50" height="50"/>
+                           <%-- Ajandam ICO--%>
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
@@ -164,6 +165,9 @@
                         </ol>
                     </div>
                 </div>
+
+                <a  class="link" data-toggle="tooltip" title="Derse Öğrenci Ekle"><i class="ti-plus"></i></a>
+                <br />
                 <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
@@ -176,34 +180,32 @@
                         <div class="card">
                             <div class="card-block">
                                 <h4 class="card-title">Bugünki Derslerim</h4>
-                               
+
                                 <div class="table-responsive" id="todaymyLessons" runat="server">
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                                
-                
-                
-                <div class="row">
-                    <!-- column -->
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-block">
-                                <h4 class="card-title">Derslerim</h4>
-                               
-                                <div class="table-responsive" id="myLessons" runat="server">
-                                   
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+
+
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Derslerim</h4>
+
+                                <div class="table-responsive" id="myLessons" runat="server">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div>
-                  
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -216,7 +218,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer">
-                © 2017 Ajandam Web
+                © 2018 Ajandam Web
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->

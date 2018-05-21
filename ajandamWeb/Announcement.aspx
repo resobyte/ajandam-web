@@ -55,8 +55,8 @@
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
 
                             <!-- Light Logo icon -->
-                           <%-- <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />--%>
-                            Ajandam ICO
+                           <img src="../img/logo.png" alt="homepage" class="light-logo" width="50" height="50"/>
+                           <%-- Ajandam ICO--%>
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
@@ -202,7 +202,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer">
-                © 2017 Ajandam Web
+                © 2018 Ajandam Web
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->

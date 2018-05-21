@@ -24,7 +24,7 @@
                        
                         <br>
                         <div class="row-fluid user-row">
-                            <img width="100" height="100" src="./img/koub.png" />
+                            <img width="100" height="100" src="./img/logo.png" />
                         </div>
                         <br>
                         <h3 class="panel-title user-row">Ajandam</h3>
