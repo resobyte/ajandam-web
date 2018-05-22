@@ -134,7 +134,7 @@
                 <!-- item-->
                 <a href="Profile.aspx" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
                 <!-- item-->
-                <a href="" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
+                <a href="Session.aspx" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
             </div>
             <!-- End Bottom points-->
         </aside>
