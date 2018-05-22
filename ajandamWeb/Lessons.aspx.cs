@@ -60,7 +60,7 @@ public partial class Lessons : System.Web.UI.Page
 
     public void getLesson()
     {
-       
+
         string Url = "http://spring-kou-service.herokuapp.com/api/login";
 
         string myParameters = $@"username={Session["username"]}&password={Session["password"]}";
@@ -128,63 +128,66 @@ public partial class Lessons : System.Web.UI.Page
             {
                 todaymyLessons.InnerHtml = "<p>Bugün dersiniz yok! ";
             }
-            
+
         }
-     }
-    
+    }
+
     protected void btnInsertStudentLesson_ServerClick(object sender, EventArgs e)
     {
-
         try
         {
-            string csvPath = @"C:\Users\resobyte\Desktop" + Path.GetFileName(MyLessonFileUpload.PostedFile.FileName);
-            MyLessonFileUpload.SaveAs(csvPath);
-
-            string jsn;
-
-            var tmp = new List<string[]>();
-            var values = new List<string[]>();
-            int i = 0;
-            var lines = File.ReadAllLines(csvPath, Encoding.GetEncoding(28599));
-
-            foreach (string line in lines)
+            if (MyLessonFileUpload.HasFile)
             {
-                if (i == 0)
-                {
-                    tmp.Add(line.Split(';'));
-                    i++;
-                }
-                else
-                {
-                    values.Add(line.Split(';'));
-                }
-            }
-            i = 0;
+                string csvPath = @"C:\Users\resobyte\Desktop" + Path.GetFileName(MyLessonFileUpload.PostedFile.FileName);
+                MyLessonFileUpload.SaveAs(csvPath);
 
-            for (int j = 0; j < values.Count - 1; j++)
+                string jsn;
+
+                var tmp = new List<string[]>();
+                var values = new List<string[]>();
+                int i = 0;
+                var lines = File.ReadAllLines(csvPath, Encoding.GetEncoding(28599));
+
+                foreach (string line in lines)
+                {
+                    if (i == 0)
+                    {
+                        tmp.Add(line.Split(';'));
+                        i++;
+                    }
+                    else
+                    {
+                        values.Add(line.Split(';'));
+                    }
+                }
+                i = 0;
+
+                for (int j = 0; j < values.Count - 1; j++)
+                {
+
+                    jsn = $"{{\"number\":\"{values[j][0]}\",\"name\":\"{values[j][3]}\",\"surname\":\"{values[j][4]}\"}}";
+
+                    string Url = $"https://spring-kou-service.herokuapp.com/api/lesson/saveStudent?lessonId=" + MyLesson.SelectedValue;
+                    using (WebClient wc = new WebClient())
+                    {
+                        wc.Headers[HttpRequestHeader.ContentType] = "application/json";
+                        wc.Encoding = System.Text.Encoding.Unicode;
+                        wc.UploadString(Url, jsn);
+                        jsn = "";
+                    }
+                }
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "SuccessPageAnnouncement", "swal(\"İşlem tamam!\", \"Derse öğrenci ekleme işleminiz başarı ile tamamlandı.\", \"success\");", true);
+            }
+            else
             {
-
-                jsn = $"{{\"number\":\"{values[j][0]}\",\"name\":\"{values[j][3]}\",\"surname\":\"{values[j][4]}\"}}";
-
-                string Url = $"https://spring-kou-service.herokuapp.com/api/lesson/saveStudent?lessonId=" + MyLesson.SelectedValue;
-                using (WebClient wc = new WebClient())
-                {
-                    wc.Headers[HttpRequestHeader.ContentType] = "application/json";
-                    wc.Encoding = System.Text.Encoding.Unicode;
-                    wc.UploadString(Url, jsn);
-                    jsn = "";
-                }
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorPageLessons", "swal(\"Ayağım takıldı!\", \"Lütfen dosya seçiniz!\", \"error\");", true);
             }
-
-
 
         }
         catch
         {
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorPageLessons", "swal(\"Ayağım takıldı!\", \"Bir şeyler ters gitti, uygun olmayan .csv formatı olabilir..!\", \"error\");", true);
         }
-
-
 
     }
 }

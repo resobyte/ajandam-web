@@ -50,7 +50,7 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="">
+                    <a class="navbar-brand" href="Lessons.aspx">
                         <!-- Logo icon -->
                         <b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -94,7 +94,7 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" runat="server" id="myName" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" runat="server" id="myName" href="Profile.aspx" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                         </li>
                     </ul>
                 </div>
@@ -112,13 +112,11 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li><a class="waves-effect waves-dark" href="Admin.aspx" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
-                        </li>
                         <li><a class="waves-effect waves-dark" href="Lessons.aspx" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Derslerim</span></a>
                         </li>
                         <li><a class="waves-effect waves-dark" href="Announcement.aspx" aria-expanded="false"><i class="mdi mdi-bullhorn"></i><span class="hide-menu">Duyurular</span></a>
                         </li>
-                        <li><a class="waves-effect waves-dark" href="icon-material.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Profilim</span></a>
+                        <li><a class="waves-effect waves-dark" href="Profile.aspx" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Profilim</span></a>
                         </li>
                         <%--<li><a class="waves-effect waves-dark" href="map-google.html" aria-expanded="false"><i class="mdi mdi-earth"></i><span class="hide-menu">Google Map</span></a>
                         </li>
@@ -134,9 +132,7 @@
             <!-- Bottom points-->
             <div class="sidebar-footer">
                 <!-- item-->
-                <a href="" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
-                <!-- item-->
-                <a href="" class="link" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
+                <a href="Profile.aspx" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
                 <!-- item-->
                 <a href="" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
             </div>
@@ -185,7 +181,7 @@
                                 <h4 class="modal-title">Duyuru Ekle</h4>
                             </div>
                             <div class="modal-body">
-                                <form runat="server">
+                                <form id="formAnnouncement" runat="server">
                                     <asp:DropDownList ID="MyAnnouncementLesson" runat="server"></asp:DropDownList>
                                     <asp:TextBox ID="MyAnnouncementTitle" runat="server"></asp:TextBox>
                                     <asp:TextBox ID="MyAnnouncementBody" runat="server"></asp:TextBox>

@@ -52,7 +52,7 @@ public partial class Login : System.Web.UI.Page
                 Session.Add("name", rssName);
                 Session.Add("surname", rssSurname);
                 Session.Add("ID", ID);
-                Response.Redirect("Admin.aspx");
+                Response.Redirect("Lessons.aspx");
             }
         }
 

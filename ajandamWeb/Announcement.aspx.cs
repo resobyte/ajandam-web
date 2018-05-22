@@ -95,7 +95,7 @@ public partial class Lessons : System.Web.UI.Page
 
     protected void btnInsertAnnouncement_ServerClick(object sender, EventArgs e)
     {
-        if (String.IsNullOrEmpty(MyAnnouncementTitle.Text) && String.IsNullOrEmpty(MyAnnouncementBody.Text))
+        if (String.IsNullOrEmpty(MyAnnouncementTitle.Text) || String.IsNullOrEmpty(MyAnnouncementBody.Text))
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorPageAnnouncement", "swal(\"Ayağım takıldı!\", \"Duyuru başlığı veya Duyuru içeriği boş olamaz!\", \"error\");", true);
         }
@@ -114,6 +114,9 @@ public partial class Lessons : System.Web.UI.Page
             }
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "SuccessPageAnnouncement", "swal(\"İşlem tamam!\", \"Duyurunuz başarı ile iletildi.\", \"success\");", true);
+
+            formAnnouncement.Controls.Clear();
+            Response.Redirect("Announcement.aspx");
 
         }
     }

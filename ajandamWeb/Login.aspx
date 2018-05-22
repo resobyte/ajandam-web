@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="css/giris.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/logo.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +30,7 @@
                         <br>
                         <h3 class="panel-title user-row">Ajandam</h3>
                         <hr>
-                        <label>Akademisyen Girişi</label>
+                        <label style="color:#5bc0de">Akademisyen Girişi</label>
                     </div>
                     <div class="panel-body">
                         <span></span>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Admin.aspx.cs" Inherits="AdminLayout" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Profile.aspx.cs" Inherits="AdminLayout" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="img/kou_logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/logo.png">
     <title>Ajandam Web</title>
     <!-- Bootstrap Core CSS -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -56,7 +56,7 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="">
+                    <a class="navbar-brand" href="Lessons.aspx">
                         <!-- Logo icon -->
                         <b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -100,7 +100,7 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" runat="server" id="myName" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" runat="server" id="myName" href="Profile.aspx" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 </a>
                         </li>
                     </ul>
@@ -119,13 +119,11 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li><a class="waves-effect waves-dark" href="index.html" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
-                        </li>
                         <li><a class="waves-effect waves-dark" href="Lessons.aspx" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Derslerim</span></a>
                         </li>
                         <li><a class="waves-effect waves-dark" href="Announcement.aspx" aria-expanded="false"><i class="mdi mdi-bullhorn"></i><span class="hide-menu">Duyurular</span></a>
                         </li>
-                        <li><a class="waves-effect waves-dark" href="icon-material.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Profilim</span></a>
+                        <li><a class="waves-effect waves-dark" href="Profile.aspx" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Profilim</span></a>
                         </li>
                         <%--<li><a class="waves-effect waves-dark" href="map-google.html" aria-expanded="false"><i class="mdi mdi-earth"></i><span class="hide-menu">Google Map</span></a>
                         </li>
@@ -142,9 +140,8 @@
             <!-- Bottom points-->
             <div class="sidebar-footer">
                 <!-- item-->
-                <a href="" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
-                <!-- item-->
-                <a href="" class="link" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
+                <a href="Profile.aspx" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
+               
                 <!-- item-->
                 <a href="" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
             </div>
@@ -166,10 +163,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor">Dashboard</h3>
+                        <h3 class="text-themecolor">Profilim</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">Profilim</li>
                         </ol>
                     </div>
                 </div>
@@ -180,152 +177,7 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <!-- Row -->
-                <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-8 col-md-7">
-                        <div class="card">
-                            <div class="card-block">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="d-flex flex-wrap">
-                                            <div>
-                                                <h3 class="card-title">Sales Overview</h3>
-                                                <h6 class="card-subtitle">Ample Admin Vs Pixel Admin</h6>
-                                            </div>
-                                            <div class="ml-auto">
-                                                <ul class="list-inline">
-                                                    <li>
-                                                        <h6 class="text-muted text-success"><i class="fa fa-circle font-10 m-r-10 "></i>Ample</h6>
-                                                    </li>
-                                                    <li>
-                                                        <h6 class="text-muted  text-info"><i class="fa fa-circle font-10 m-r-10"></i>Pixel</h6>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="amp-pxl" style="height: 360px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-5">
-                        <div class="card">
-                            <div class="card-block">
-                                <h3 class="card-title">Our Visitors </h3>
-                                <h6 class="card-subtitle">Different Devices Used to Visit</h6>
-                                <div id="visitor" style="height: 290px; width: 100%;"></div>
-                            </div>
-                            <div>
-                                <hr class="m-t-0 m-b-0">
-                            </div>
-                            <div class="card-block text-center ">
-                                <ul class="list-inline m-b-0">
-                                    <li>
-                                        <h6 class="text-muted text-info"><i class="fa fa-circle font-10 m-r-10 "></i>Mobile</h6>
-                                    </li>
-                                    <li>
-                                        <h6 class="text-muted  text-primary"><i class="fa fa-circle font-10 m-r-10"></i>Desktop</h6>
-                                    </li>
-                                    <li>
-                                        <h6 class="text-muted  text-success"><i class="fa fa-circle font-10 m-r-10"></i>Tablet</h6>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Row -->
-                <!-- Row -->
-                <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-4 col-xlg-3 col-md-5">
-                        <!-- Column -->
-                        <div class="card">
-                            <img class="card-img-top" src="../assets/images/background/profile-bg.jpg" alt="Card image cap">
-                            <div class="card-block little-profile text-center">
-                                <div class="pro-img">
-                                    <img src="../assets/images/users/4.jpg" alt="user" />
-                                </div>
-                                <h3 class="m-b-0">Angela Dominic</h3>
-                                <p>Web Designer &amp; Developer</p>
-                                <a href="javascript:void(0)" class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded">Follow</a>
-                                <div class="row text-center m-t-20">
-                                    <div class="col-lg-4 col-md-4 m-t-20">
-                                        <h3 class="m-b-0 font-light">1099</h3>
-                                        <small>Articles</small>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 m-t-20">
-                                        <h3 class="m-b-0 font-light">23,469</h3>
-                                        <small>Followers</small>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 m-t-20">
-                                        <h3 class="m-b-0 font-light">6035</h3>
-                                        <small>Following</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Column -->
-                        <div class="card">
-                            <div class="card-block bg-info">
-                                <h4 class="text-white card-title">My Contacts</h4>
-                                <h6 class="card-subtitle text-white m-b-0 op-5">Checkout my contacts here</h6>
-                            </div>
-                            <div class="card-block">
-                                <div class="message-box contact-box">
-                                    <h2 class="add-ct-btn">
-                                        <button type="button" class="btn btn-circle btn-lg btn-success waves-effect waves-dark">+</button></h2>
-                                    <div class="message-widget contact-widget">
-                                        <!-- Message -->
-                                        <a href="#">
-                                            <div class="user-img">
-                                                <img src="../assets/images/users/1.jpg" alt="user" class="img-circle">
-                                                <span class="profile-status online pull-right"></span>
-                                            </div>
-                                            <div class="mail-contnet">
-                                                <h5>Pavan kumar</h5>
-                                                <span class="mail-desc">info@wrappixel.com</span>
-                                            </div>
-                                        </a>
-                                        <!-- Message -->
-                                        <a href="#">
-                                            <div class="user-img">
-                                                <img src="../assets/images/users/2.jpg" alt="user" class="img-circle">
-                                                <span class="profile-status busy pull-right"></span>
-                                            </div>
-                                            <div class="mail-contnet">
-                                                <h5>Sonu Nigam</h5>
-                                                <span class="mail-desc">pamela1987@gmail.com</span>
-                                            </div>
-                                        </a>
-                                        <!-- Message -->
-                                        <a href="#">
-                                            <div class="user-img"><span class="round">A</span> <span class="profile-status away pull-right"></span></div>
-                                            <div class="mail-contnet">
-                                                <h5>Arijit Sinh</h5>
-                                                <span class="mail-desc">cruise1298.fiplip@gmail.com</span>
-                                            </div>
-                                        </a>
-                                        <!-- Message -->
-                                        <a href="#">
-                                            <div class="user-img">
-                                                <img src="../assets/images/users/4.jpg" alt="user" class="img-circle">
-                                                <span class="profile-status offline pull-right"></span>
-                                            </div>
-                                            <div class="mail-contnet">
-                                                <h5>Pavan kumar</h5>
-                                                <span class="mail-desc">kat@gmail.com</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-8 col-xlg-9 col-md-7">
+
                         <div class="card">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs profile-tab" role="tablist">
@@ -519,8 +371,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -572,8 +423,5 @@
     <!-- Chart JS -->
     <script src="js/dashboard1.js"></script>
 </body>
-    <script>
-    swal("Good job!", "You clicked the button!", "success");
-</script>
 </html>
 
