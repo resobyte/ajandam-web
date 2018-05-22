@@ -197,6 +197,29 @@
                     </div>
                 </div>
 
+                <div class="modal fade" id="jsShowAnnouncement" role="dialog">
+                   <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 id="AnnouncementTitle" class="modal-title">Duyuru Ekle</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p id="AnnouncementContent"></p>
+                            </div>
+                            <div class="modal-footer">
+
+                                <p id="AnnouncementDate"></p>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
                 <div class="row">
                     <!-- column -->
                     <div class="col-lg-12">
@@ -255,6 +278,19 @@
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
 </body>
+
+    <script>
+        function getText(id) {
+
+            var labelTitle = $("#" + id).text();
+            var labelContent = $("#a" + id).text();
+            var labelDate = $("#d" + id).text();
+            $("#AnnouncementTitle").text(labelTitle);
+            $("#AnnouncementContent").text(labelContent);
+            $("#AnnouncementDate").text(labelDate);
+            $('#jsShowAnnouncement').modal('show'); 
+        }
+    </script>
 
 </html>
 

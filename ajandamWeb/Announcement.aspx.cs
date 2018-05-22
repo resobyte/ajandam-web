@@ -83,7 +83,7 @@ public partial class Lessons : System.Web.UI.Page
 
             for (int i = 0; i < AnnouncementTitle.Count; i++)
             {
-                lessonsDiv += $"<tr><td><a href='' id='{AnnouncementId[i]}'>{AnnouncementTitle[i]}</a></td><td>{AnnouncementContent[i]}</td><td>{AnnouncementDate[i]}</td><td>{AnnouncementLesson[i]}</td></tr>";
+                lessonsDiv += $"<tr><td><a href='#' onclick='getText(this.id)' id='{AnnouncementId[i]}'>{AnnouncementTitle[i]}</a></td><td><p id='a{AnnouncementId[i]}'>{AnnouncementContent[i]}</p></td><td><p id='d{AnnouncementId[i]}'>{AnnouncementDate[i]}<p></td><td>{AnnouncementLesson[i]}</td></tr>";
                 
                 
             }
