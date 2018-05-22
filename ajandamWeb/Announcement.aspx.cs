@@ -17,6 +17,13 @@ public partial class Lessons : System.Web.UI.Page
     List<string> AnnouncementDate = new List<string>();
     List<string> AnnouncementLesson = new List<string>();
 
+
+    List<string> lessonId = new List<string>();
+    List<string> lessonName = new List<string>();
+    List<string> lessonClock = new List<string>();
+    List<string> lessonDay = new List<string>();
+    List<string> lessonLocation = new List<string>();
+
     string lessonsDiv = @"<table class='table'><thead>
         <tr>
             <th>Duyuru Başlığı</th>
@@ -30,6 +37,12 @@ public partial class Lessons : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        lessonName.Clear();
+        lessonClock.Clear();
+        lessonDay.Clear();
+        lessonLocation.Clear();
+        MyAnnouncementLesson.Items.Clear();
+
         object user = Session["username"];
 
 
@@ -40,6 +53,7 @@ public partial class Lessons : System.Web.UI.Page
         else
         {
             myName.InnerHtml = "<img src='../assets/images/users/1.jpg' alt='user' class='profile-pic m-r-10' />" + Session["name"].ToString() + " " + Session["surname"].ToString();
+            getLesson();
             getAnnouncements();
         }
     }
@@ -70,38 +84,69 @@ public partial class Lessons : System.Web.UI.Page
             for (int i = 0; i < AnnouncementTitle.Count; i++)
             {
                 lessonsDiv += $"<tr><td><a href='' id='{AnnouncementId[i]}'>{AnnouncementTitle[i]}</a></td><td>{AnnouncementContent[i]}</td><td>{AnnouncementDate[i]}</td><td>{AnnouncementLesson[i]}</td></tr>";
+                
+                
             }
             lessonsDiv += "</tbody></table>";
             myAnnouncement.InnerHtml = lessonsDiv;
 
-
-
-            //foreach (var lessons in rss["lessons"])
-            //{
-            //    string toDays = (string)lessons["day"];
-            //    if (toDays == Convert.ToString(days[day]))
-            //    {
-            //        lessonName.Add((string)lessons["name"]);
-            //        lessonClock.Add((string)lessons["clock"]);
-            //        lessonDay.Add((string)lessons["day"]);
-            //        lessonLocation.Add((string)lessons["location"]);
-            //    }
-            //}
-
-            //if (lessonName.Count != 0)
-            //{
-            //    for (int i = 0; i < lessonName.Count; i++)
-            //    {
-            //        lessonstodayDiv += $"<tr><td><a href='' id='{lessonId[i]}'>{lessonName[i]}</a></td><td>{lessonDay[i]}</td><td>{lessonClock[i]}</td><td>{lessonLocation[i]}</td></tr>";
-            //    }
-            //    lessonstodayDiv += "</tbody></table>";
-            //    todaymyLessons.InnerHtml = lessonstodayDiv;
-            //}
-
-            //else
-            //{
-            //    todaymyLessons.InnerHtml = "<p> Bugün dersiniz yok! ";
-            //}
         }
     }
+
+    protected void btnInsertAnnouncement_ServerClick(object sender, EventArgs e)
+    {
+        if (String.IsNullOrEmpty(MyAnnouncementTitle.Text) && String.IsNullOrEmpty(MyAnnouncementBody.Text))
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorPageAnnouncement", "swal(\"Ayağım takıldı!\", \"Duyuru başlığı veya Duyuru içeriği boş olamaz!\", \"error\");", true);
+        }
+
+        else
+        {
+            string insertAnnouncementjson = $"{{\"title\":\"{MyAnnouncementTitle.Text}\",\"content\":\"{MyAnnouncementBody.Text}\",";
+            insertAnnouncementjson += "\"academician\":{\"id\":\"" + Session["ID"] + "\"},\"lesson\":{\"id\":\"" + MyAnnouncementLesson.SelectedValue + "\"}}";
+
+            string Url = $"https://spring-kou-service.herokuapp.com/api/announcement";
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers[HttpRequestHeader.ContentType] = "application/json";
+                wc.Encoding = System.Text.Encoding.Unicode;
+                wc.UploadString(Url, insertAnnouncementjson);
+            }
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "SuccessPageAnnouncement", "swal(\"İşlem tamam!\", \"Duyurunuz başarı ile iletildi.\", \"success\");", true);
+
+        }
     }
+
+    public void getLesson()
+    {
+
+        string Url = "http://spring-kou-service.herokuapp.com/api/login";
+
+        string myParameters = $@"username={Session["username"]}&password={Session["password"]}";
+
+        using (WebClient wc = new WebClient())
+        {
+            wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+            wc.Encoding = System.Text.Encoding.UTF8;
+            string HtmlResult = wc.UploadString(Url, myParameters);
+            JObject rss = JObject.Parse(HtmlResult);
+            string rssName = (string)rss["data"][0]["name"];
+            string rssSurname = (string)rss["data"][0]["surname"];
+
+            foreach (var lessons in rss["lessons"])
+            {
+                lessonId.Add((string)lessons["id"]);
+                lessonName.Add((string)lessons["name"]);
+                lessonClock.Add((string)lessons["clock"]);
+                lessonDay.Add((string)lessons["day"]);
+                lessonLocation.Add((string)lessons["location"]);
+                ListItem myAnnouncementList = new ListItem();
+                myAnnouncementList.Text = (string)lessons["name"];
+                myAnnouncementList.Value = (string)lessons["id"];
+                MyAnnouncementLesson.Items.Add(myAnnouncementList);
+            }
+
+        }
+    }
+}

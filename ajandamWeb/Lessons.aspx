@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="img/kou_logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/logo.png">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Ajandam Web</title>
     <!-- Bootstrap Core CSS -->
@@ -20,6 +20,7 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -56,8 +57,8 @@
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
 
                             <!-- Light Logo icon -->
-                             <img src="../img/logo.png" alt="homepage" class="light-logo" width="50" height="50"/>
-                           <%-- Ajandam ICO--%>
+                            <img src="../img/logo.png" alt="homepage" class="light-logo" width="50" height="50" />
+                            <%-- Ajandam ICO--%>
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
@@ -166,8 +167,32 @@
                     </div>
                 </div>
 
-                <a  class="link" data-toggle="tooltip" title="Derse Öğrenci Ekle"><i class="ti-plus"></i></a>
+                <a href="#addLesson" class="link" data-toggle="modal" title="Derse Öğrenci Ekle" onclick="FillDropDownLessons()"><i class="ti-plus"></i></a>
                 <br />
+                <div class="modal fade" id="addLesson" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Derse Öğrenci Ekle</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form runat="server">
+                                <asp:DropDownList ID="MyLesson" runat="server"></asp:DropDownList>
+                                <asp:FileUpload ID="MyLessonFileUpload" runat="server" />
+                                <button id="btnInsertStudentLesson" type="button" class="btn btn-default" data-dismiss="modal" runat="server" onserverclick="btnInsertStudentLesson_ServerClick">Ekle</button>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
@@ -249,6 +274,7 @@
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
 </body>
+
 
 </html>
 

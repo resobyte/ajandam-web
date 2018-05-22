@@ -1,9 +1,12 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -40,7 +43,7 @@ public partial class Lessons : System.Web.UI.Page
         lessonClock.Clear();
         lessonDay.Clear();
         lessonLocation.Clear();
-
+        MyLesson.Items.Clear();
         object user = Session["username"];
 
 
@@ -57,6 +60,7 @@ public partial class Lessons : System.Web.UI.Page
 
     public void getLesson()
     {
+       
         string Url = "http://spring-kou-service.herokuapp.com/api/login";
 
         string myParameters = $@"username={Session["username"]}&password={Session["password"]}";
@@ -69,7 +73,7 @@ public partial class Lessons : System.Web.UI.Page
             JObject rss = JObject.Parse(HtmlResult);
             string rssName = (string)rss["data"][0]["name"];
             string rssSurname = (string)rss["data"][0]["surname"];
-            string[] days = { "Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe","Cuma", "Cumartesi" };
+            string[] days = { "Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi" };
             DateTime toDay = DateTime.Today;
             int day = Convert.ToInt32(toDay.DayOfWeek);
 
@@ -85,6 +89,10 @@ public partial class Lessons : System.Web.UI.Page
             for (int i = 0; i < lessonName.Count; i++)
             {
                 lessonsDiv += $"<tr><td><a href='' id='{lessonId[i]}'>{lessonName[i]}</a></td><td>{lessonDay[i]}</td><td>{lessonClock[i]}</td><td>{lessonLocation[i]}</td></tr>";
+                ListItem myLessonList = new ListItem();
+                myLessonList.Text = lessonName[i];
+                myLessonList.Value = lessonId[i];
+                MyLesson.Items.Add(myLessonList);
             }
             lessonsDiv += "</tbody></table>";
             myLessons.InnerHtml = lessonsDiv;
@@ -94,10 +102,10 @@ public partial class Lessons : System.Web.UI.Page
             lessonDay.Clear();
             lessonLocation.Clear();
 
-            foreach (var lessons in rss["lessons"]) 
+            foreach (var lessons in rss["lessons"])
             {
-                string toDays=(string)lessons["day"];
-                if ( toDays == Convert.ToString(days[day]))
+                string toDays = (string)lessons["day"];
+                if (toDays == Convert.ToString(days[day]))
                 {
                     lessonName.Add((string)lessons["name"]);
                     lessonClock.Add((string)lessons["clock"]);
@@ -106,7 +114,7 @@ public partial class Lessons : System.Web.UI.Page
                 }
             }
 
-            if (lessonName.Count!=0)
+            if (lessonName.Count != 0)
             {
                 for (int i = 0; i < lessonName.Count; i++)
                 {
@@ -118,9 +126,65 @@ public partial class Lessons : System.Web.UI.Page
 
             else
             {
-                todaymyLessons.InnerHtml = "<p> Bugün dersiniz yok! ";
+                todaymyLessons.InnerHtml = "<p>Bugün dersiniz yok! ";
             }
+            
         }
+     }
+    
+    protected void btnInsertStudentLesson_ServerClick(object sender, EventArgs e)
+    {
+
+        try
+        {
+            string csvPath = @"C:\Users\resobyte\Desktop" + Path.GetFileName(MyLessonFileUpload.PostedFile.FileName);
+            MyLessonFileUpload.SaveAs(csvPath);
+
+            string jsn;
+
+            var tmp = new List<string[]>();
+            var values = new List<string[]>();
+            int i = 0;
+            var lines = File.ReadAllLines(csvPath, Encoding.GetEncoding(28599));
+
+            foreach (string line in lines)
+            {
+                if (i == 0)
+                {
+                    tmp.Add(line.Split(';'));
+                    i++;
+                }
+                else
+                {
+                    values.Add(line.Split(';'));
+                }
+            }
+            i = 0;
+
+            for (int j = 0; j < values.Count - 1; j++)
+            {
+
+                jsn = $"{{\"number\":\"{values[j][0]}\",\"name\":\"{values[j][3]}\",\"surname\":\"{values[j][4]}\"}}";
+
+                string Url = $"https://spring-kou-service.herokuapp.com/api/lesson/saveStudent?lessonId=" + MyLesson.SelectedValue;
+                using (WebClient wc = new WebClient())
+                {
+                    wc.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    wc.Encoding = System.Text.Encoding.Unicode;
+                    wc.UploadString(Url, jsn);
+                    jsn = "";
+                }
+            }
+
+
+
+        }
+        catch
+        {
+
+        }
+
+
 
     }
 }

@@ -45,7 +45,7 @@
                                     type="password" style="font-family: Arial, FontAwesome" runat="server">
                             </div>
                             
-                            <asp:Button Class="btn btn-lg btn-success btn-block" ID="btnLogin" runat="server" Text="Giriş" OnClick="btnLogin_Click" />
+                            <asp:Button Class="btn btn-lg btn-info btn-block" ID="btnLogin" runat="server" Text="Giriş" OnClick="btnLogin_Click" />
                         </fieldset>
                     </div>
                 </div>

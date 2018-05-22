@@ -11,12 +11,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-   <link rel="icon" type="image/png" sizes="16x16" href="img/kou_logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/logo.png">
     <title>Ajandam Web</title>
     <!-- Bootstrap Core CSS -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -55,8 +56,8 @@
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
 
                             <!-- Light Logo icon -->
-                           <img src="../img/logo.png" alt="homepage" class="light-logo" width="50" height="50"/>
-                           <%-- Ajandam ICO--%>
+                            <img src="../img/logo.png" alt="homepage" class="light-logo" width="50" height="50" />
+                            <%-- Ajandam ICO--%>
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
@@ -170,18 +171,44 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                              
-                
-                
+
+                <a href="#addAnnouncement" class="link" data-toggle="modal" title="Duyuru Ekle"><i class="ti-plus"></i></a>
+
+
+                <div class="modal fade" id="addAnnouncement" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Duyuru Ekle</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form runat="server">
+                                    <asp:DropDownList ID="MyAnnouncementLesson" runat="server"></asp:DropDownList>
+                                    <asp:TextBox ID="MyAnnouncementTitle" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="MyAnnouncementBody" runat="server"></asp:TextBox>
+                                    <button id="btnInsertAnnouncement" type="button" class="btn btn-default" data-dismiss="modal" runat="server" onserverclick="btnInsertAnnouncement_ServerClick">Ekle</button>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
                 <div class="row">
                     <!-- column -->
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-block">
                                 <h4 class="card-title">Duyurularım</h4>
-                               
+
                                 <div class="table-responsive" id="myAnnouncement" runat="server">
-                                   
                                 </div>
                             </div>
                         </div>
@@ -189,7 +216,6 @@
                 </div>
 
                 <div>
-                  
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
