@@ -228,25 +228,21 @@
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
 </body>
-    <script>
-        function goPost(id) {
-            $.ajax({
-                type: "GET",
-                url: 'http://spring-kou-service.herokuapp.com/api/lesson/getAll',
-                //data: { lessonId:id},
-                success: function (data) {
-                    console.log(data);
-                    //for (i = 0; i < data.length; i++) {
-                    //    console.log(data.data[i].name);
-                    //}
-                    
-                }
-            });
+<script>
+    function deleteLesson(id) {
+        $.ajax({
+            type: "DELETE",
+            url: 'http://spring-kou-service.herokuapp.com/api/lesson/deleteLesson?lessonId=' + id + '',
+
+            success: function (data) {
+                swal("Good job!","Akademisyen silme işlemi başarılı!", "success");
+            }
+        });
 
 
-        }
+    }
 
-    </script>
+</script>
 
 </html>
 
