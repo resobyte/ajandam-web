@@ -24,3 +24,6 @@ Password: 1
 Superadmin:
 Username: admin
 Password: admin
+
+When added Academician
+Default password:1

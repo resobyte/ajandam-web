@@ -43,18 +43,26 @@ public partial class Lessons : System.Web.UI.Page
         lessonLocation.Clear();
         MyAnnouncementLesson.Items.Clear();
 
-        object user = Session["username"];
+        object userName = Session["username"];
 
 
-        if (user == null)
+        if (userName == null)
         {
             Response.Redirect("Login.aspx");
         }
         else
         {
-            myName.InnerHtml = "<img src='../assets/images/users/1.jpg' alt='user' class='profile-pic m-r-10' />" + Session["name"].ToString() + " " + Session["surname"].ToString();
-            getLesson();
-            getAnnouncements();
+            object user = Session["name"];
+            if (user.ToString() == "Sistem")
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                myName.InnerHtml = "<img src='../assets/images/users/1.jpg' alt='user' class='profile-pic m-r-10' />" + Session["name"].ToString() + " " + Session["surname"].ToString();
+                getLesson();
+                getAnnouncements();
+            }
         }
     }
 
