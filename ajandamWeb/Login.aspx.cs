@@ -52,7 +52,7 @@ public partial class Login : System.Web.UI.Page
                 Session.Add("ID", ID);
 
                 if (rssName == "Sistem")
-                    Response.Redirect("AddLessons.aspx");
+                    Response.Redirect("AdminLessons.aspx");
 
                 else
                     Response.Redirect("Lessons.aspx");

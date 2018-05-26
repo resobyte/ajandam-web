@@ -50,7 +50,7 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="AddLessons.aspx">
+                    <a class="navbar-brand" href="AdminLessons.aspx">
                         <!-- Logo icon -->
                         <b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -112,6 +112,7 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
+                        <li><a class="waves-effect waves-dark" href="AdminLessons.aspx" aria-expanded="false"><i class="mdi  mdi-bookmark-plus"></i><span class="hide-menu">Dersler</span></a>
                         <li><a class="waves-effect waves-dark" href="AddLessons.aspx" aria-expanded="false"><i class="mdi  mdi-bookmark-plus"></i><span class="hide-menu">Ders Ekle</span></a>
                         </li>
                         <li><a class="waves-effect waves-dark" href="AddAcademician.aspx" aria-expanded="false"><i class="mdi mdi-account-multiple-plus"></i><span class="hide-menu">Akademisyen Ekle</span></a>

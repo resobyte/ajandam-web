@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AddAcademician.aspx.cs" Inherits="Admin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AdminLessons.aspx.cs" Inherits="Lessons" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,14 +12,15 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="img/logo.png">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Ajandam Web</title>
     <!-- Bootstrap Core CSS -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -112,7 +113,7 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                         <li><a class="waves-effect waves-dark" href="AdminLessons.aspx" aria-expanded="false"><i class="mdi  mdi-bookmark-plus"></i><span class="hide-menu">Dersler</span></a>
+                        <li><a class="waves-effect waves-dark" href="AdminLessons.aspx" aria-expanded="false"><i class="mdi  mdi-bookmark-plus"></i><span class="hide-menu">Dersler</span></a>
                         <li><a class="waves-effect waves-dark" href="AddLessons.aspx" aria-expanded="false"><i class="mdi  mdi-bookmark-plus"></i><span class="hide-menu">Ders Ekle</span></a>
                         </li>
                         <li><a class="waves-effect waves-dark" href="AddAcademician.aspx" aria-expanded="false"><i class="mdi mdi-account-multiple-plus"></i><span class="hide-menu">Akademisyen Ekle</span></a>
@@ -151,49 +152,35 @@
                 <!-- ============================================================== -->
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 col-8 align-self-center">
+                        <h3 class="text-themecolor m-b-0 m-t-0">Dersler</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item active">Dersler</li>
+                        </ol>
+                    </div>
+                </div>
 
 
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
                 <div class="row">
                     <!-- column -->
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-block">
-                                <h4 class="card-title">Akademisyen Ekle</h4>
-                                <form runat="server">
-                                      <div class="form-group">
-                                        <label for="exampleInputLessonDay">Ünvanı</label>
-                                        <select id="exampleInputAcademicianTitle" class="form-control form-control-sm" runat="server">
-                                            <option>Prof.Dr</option>
-                                            <option>Doç.Dr</option>
-                                            <option>Dr.Öğr.Üyesi</option>
-                                            <option>Arş.Gör</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputLessonName">Akademisyen Adı</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputAcademicianName" aria-describedby="emailHelp" placeholder="Pınar Onay" runat="server">
-                                        <%--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>--%>
-                                    </div>
-                                  
-                                    <div class="form-group">
-                                        <label for="exampleInputLessonClock">Akademisyen Soyadı</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputAcademicianSurname" placeholder="Durdu" runat="server">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputLessonPlace">Kullanıcı Adı</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputAcademicianUsername" placeholder="ponaydurdu" runat="server">
-                                    </div>
-
-                                    <%--                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                    </div>--%>
-                                    <button id="btnAddAcademician" type="submit" class="btn btn-info" runat="server" onserverclick="btnAddAcademician_ServerClick">Akademisyen Ekle</button>
-                                </form>
+                                <div class="table-responsive" id="myAdminLessons" runat="server">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <div>
                 </div>
@@ -239,18 +226,25 @@
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
 </body>
+    <script>
+        function goPost(id) {
+            $.ajax({
+                type: "GET",
+                url: 'https://spring-kou-service.herokuapp.com/api/students/'+id+'/lessonId',
+                //data: { lessonId:id},
+                success: function (data) {
+                    console.log(data.length);
+                    for (i = 0; i < data.length; i++) {
+                        console.log(data.data[i].name);
+                    }
+                    
+                }
+            });
 
-<%--    <script>
-        function getText(id) {
 
-            var labelTitle = $("#" + id).text();
-            var labelContent = $("#a" + id).text();
-            var labelDate = $("#d" + id).text();
-            $("#AnnouncementTitle").text(labelTitle);
-            $("#AnnouncementContent").text(labelContent);
-            $("#AnnouncementDate").text(labelDate);
-            $('#jsShowAnnouncement').modal('show'); 
         }
-    </script>--%>
+
+    </script>
+
 </html>
 
