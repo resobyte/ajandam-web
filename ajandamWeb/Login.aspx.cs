@@ -15,9 +15,7 @@ public partial class Login : System.Web.UI.Page
     {
 
     }
-
-
-
+    
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         string email = String.Format("{0}", Request.Form["email"]);
@@ -52,7 +50,12 @@ public partial class Login : System.Web.UI.Page
                 Session.Add("name", rssName);
                 Session.Add("surname", rssSurname);
                 Session.Add("ID", ID);
-                Response.Redirect("Lessons.aspx");
+
+                if (rssName == "Sistem")
+                    Response.Redirect("AddLessons.aspx");
+
+                else
+                    Response.Redirect("Lessons.aspx");
             }
         }
 

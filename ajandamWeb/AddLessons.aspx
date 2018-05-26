@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Announcement.aspx.cs" Inherits="Lessons" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AddLessons.aspx.cs" Inherits="Admin" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +50,7 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="Lessons.aspx">
+                    <a class="navbar-brand" href="AddLessons.aspx">
                         <!-- Logo icon -->
                         <b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -112,11 +112,9 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li><a class="waves-effect waves-dark" href="Lessons.aspx" aria-expanded="false"><i class="mdi mdi-book"></i><span class="hide-menu">Derslerim</span></a>
+                        <li><a class="waves-effect waves-dark" href="AddLessons.aspx" aria-expanded="false"><i class="mdi  mdi-bookmark-plus"></i><span class="hide-menu">Ders Ekle</span></a>
                         </li>
-                        <li><a class="waves-effect waves-dark" href="Announcement.aspx" aria-expanded="false"><i class="mdi mdi-bullhorn"></i><span class="hide-menu">Duyurular</span></a>
-                        </li>
-                        <li><a class="waves-effect waves-dark" href="Profile.aspx" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Profilim</span></a>
+                        <li><a class="waves-effect waves-dark" href="AddAcademician.aspx" aria-expanded="false"><i class="mdi mdi-account-multiple-plus"></i><span class="hide-menu">Akademisyen Ekle</span></a>
                         </li>
                         <%--<li><a class="waves-effect waves-dark" href="map-google.html" aria-expanded="false"><i class="mdi mdi-earth"></i><span class="hide-menu">Google Map</span></a>
                         </li>
@@ -152,72 +150,6 @@
                 <!-- ============================================================== -->
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
-                <div class="row page-titles">
-                    <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Duyurularım</h3>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Duyurularım</li>
-                        </ol>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-
-                <a href="#addAnnouncement" class="link" data-toggle="modal" title="Duyuru Ekle"><i class="ti-plus"></i></a>
-
-
-                <div class="modal fade" id="addAnnouncement" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Duyuru Ekle</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form id="formAnnouncement" runat="server">
-                                    <asp:DropDownList ID="MyAnnouncementLesson" runat="server"></asp:DropDownList>
-                                    <asp:TextBox ID="MyAnnouncementTitle" runat="server"></asp:TextBox>
-                                    <asp:TextBox ID="MyAnnouncementBody" runat="server"></asp:TextBox>
-                                    <button id="btnInsertAnnouncement" type="button" class="btn btn-default" data-dismiss="modal" runat="server" onserverclick="btnInsertAnnouncement_ServerClick">Ekle</button>
-
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="modal fade" id="jsShowAnnouncement" role="dialog">
-                   <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 id="AnnouncementTitle" class="modal-title"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <p id="AnnouncementContent"></p>
-                            </div>
-                            <div class="modal-footer">
-
-                                <p id="AnnouncementDate"></p>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
 
 
                 <div class="row">
@@ -225,10 +157,45 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-block">
-                                <h4 class="card-title">Duyurularım</h4>
+                                <h4 class="card-title">Ders Ekle</h4>
+                                <form runat="server">
+                                    <div class="form-group">
+                                        <label for="exampleInputLessonName">Ders Adı</label>
+                                        <input type="text" class="form-control form-control-sm" id="exampleInputLessonName" aria-describedby="emailHelp" placeholder="Yazılım Mühendisliği" runat="server">
+                                        <%--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>--%>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputLessonDay">Ders Günü</label>
+                                        <select class="form-control form-control-sm" id="exampleInputLessonDay" runat="server">
+                                            <option>Pazartesi</option>
+                                            <option>Salı</option>
+                                            <option>Çarşamba</option>
+                                            <option>Perşembe</option>
+                                            <option>Cuma</option>
+                                            <option>Cumartesi</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputLessonClock">Ders Saati</label>
+                                        <input type="text" class="form-control form-control-sm" id="exampleInputLessonClock" placeholder="17:00" runat="server">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputLessonPlace">Ders Yeri</label>
+                                        <input type="text" class="form-control form-control-sm" id="exampleInputLessonPlace" placeholder="Amfi-A" runat="server">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputLessonAcademician">Akademisyen</label>
+                                        <select id="ddlAcademician" class="form-control form-control-sm" runat="server">
+                                            
+                                        </select>
+                                    </div>
 
-                                <div class="table-responsive" id="myAnnouncement" runat="server">
-                                </div>
+                                    <%--                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                    </div>--%>
+                                    <button id="btnAddLessons" type="submit" class="btn btn-info" runat="server" onserverclick="btnAddLessons_ServerClick">Ders Ekle</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -279,7 +246,7 @@
     <script src="js/custom.min.js"></script>
 </body>
 
-    <script>
+<%--    <script>
         function getText(id) {
 
             var labelTitle = $("#" + id).text();
@@ -290,7 +257,6 @@
             $("#AnnouncementDate").text(labelDate);
             $('#jsShowAnnouncement').modal('show'); 
         }
-    </script>
-
+    </script>--%>
 </html>
 

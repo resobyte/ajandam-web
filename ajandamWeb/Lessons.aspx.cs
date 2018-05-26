@@ -88,7 +88,7 @@ public partial class Lessons : System.Web.UI.Page
 
             for (int i = 0; i < lessonName.Count; i++)
             {
-                lessonsDiv += $"<tr><td><a href='' id='{lessonId[i]}'>{lessonName[i]}</a></td><td>{lessonDay[i]}</td><td>{lessonClock[i]}</td><td>{lessonLocation[i]}</td></tr>";
+                lessonsDiv += $"<tr><td><a href='#' onclick='goPost(this.id)' id='{lessonId[i]}'>{lessonName[i]}</a></td><td>{lessonDay[i]}</td><td>{lessonClock[i]}</td><td>{lessonLocation[i]}</td></tr>";
                 ListItem myLessonList = new ListItem();
                 myLessonList.Text = lessonName[i];
                 myLessonList.Value = lessonId[i];
@@ -118,7 +118,7 @@ public partial class Lessons : System.Web.UI.Page
             {
                 for (int i = 0; i < lessonName.Count; i++)
                 {
-                    lessonstodayDiv += $"<tr><td><a href='' id='{lessonId[i]}'>{lessonName[i]}</a></td><td>{lessonDay[i]}</td><td>{lessonClock[i]}</td><td>{lessonLocation[i]}</td></tr>";
+                    lessonstodayDiv += $"<tr><td><a id='{lessonId[i]}'>{lessonName[i]}</a></td><td>{lessonDay[i]}</td><td>{lessonClock[i]}</td><td>{lessonLocation[i]}</td></tr>";
                 }
                 lessonstodayDiv += "</tbody></table>";
                 todaymyLessons.InnerHtml = lessonstodayDiv;

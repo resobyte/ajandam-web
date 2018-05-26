@@ -270,7 +270,25 @@
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
 </body>
+    <script>
+        function goPost(id) {
+            $.ajax({
+                type: "GET",
+                url: 'https://spring-kou-service.herokuapp.com/api/students/'+id+'/lessonId',
+                //data: { lessonId:id},
+                success: function (data) {
+                    console.log(data.length);
+                    for (i = 0; i < data.length; i++) {
+                        console.log(data.data[i].name);
+                    }
+                    
+                }
+            });
 
+
+        }
+
+    </script>
 
 </html>
 
