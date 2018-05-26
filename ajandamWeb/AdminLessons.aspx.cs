@@ -80,7 +80,7 @@ public partial class Lessons : System.Web.UI.Page
 
             for (int i = 0; i < AdminlessonId.Count; i++)
             {
-                lessonsDiv += $"<tr><td><a href='#' onclick='goPost(this.id)' id='{AdminlessonId[i]}'>{AdminlessonName[i]}</a></td><td>{AdminlessonDay[i]}</td><td>{AdminlessonClock[i]}</td><td>{AdminlessonLocation[i]}</td><td>{AdminlessonAcademicianName[i] + AdminlessonAcademicianSurname[i]}</td></tr>";
+                lessonsDiv += $"<tr><td><a href='#' onclick='goPost(this.id)' id='{AdminlessonId[i]}'>{AdminlessonName[i]}</a></td><td>{AdminlessonDay[i]}</td><td>{AdminlessonClock[i]}</td><td>{AdminlessonLocation[i]}</td><td>{AdminlessonAcademicianName[i] + " "+AdminlessonAcademicianSurname[i]}</td></tr>";
                 ListItem myLessonList = new ListItem();
                 
             }

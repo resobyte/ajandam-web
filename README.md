@@ -20,3 +20,7 @@ Password: 1
 
 Username: 140202040
 Password: 1
+
+Superadmin:
+Username: admin
+Password: admin
