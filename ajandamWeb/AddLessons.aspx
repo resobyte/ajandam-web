@@ -112,10 +112,12 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li><a class="waves-effect waves-dark" href="AdminLessons.aspx" aria-expanded="false"><i class="mdi  mdi-bookmark-plus"></i><span class="hide-menu">Dersler</span></a>
+                        <li><a class="waves-effect waves-dark" href="AdminLessons.aspx" aria-expanded="false"><i class="mdi  mdi-bookmark"></i><span class="hide-menu">Dersler</span></a>
                         <li><a class="waves-effect waves-dark" href="AddLessons.aspx" aria-expanded="false"><i class="mdi  mdi-bookmark-plus"></i><span class="hide-menu">Ders Ekle</span></a>
                         </li>
                         <li><a class="waves-effect waves-dark" href="AddAcademician.aspx" aria-expanded="false"><i class="mdi mdi-account-multiple-plus"></i><span class="hide-menu">Akademisyen Ekle</span></a>
+                        </li>
+                        <li><a class="waves-effect waves-dark" href="AdminProfile.aspx" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Profilim</span></a>
                         </li>
                         <%--<li><a class="waves-effect waves-dark" href="map-google.html" aria-expanded="false"><i class="mdi mdi-earth"></i><span class="hide-menu">Google Map</span></a>
                         </li>
@@ -131,7 +133,7 @@
             <!-- Bottom points-->
             <div class="sidebar-footer">
                 <!-- item-->
-                <a href="Profile.aspx" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
+                <a href="AdminProfile.aspx" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
                 <!-- item-->
                 <a href="Session.aspx" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
             </div>
