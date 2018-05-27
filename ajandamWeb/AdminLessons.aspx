@@ -21,6 +21,8 @@
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -183,6 +185,55 @@
                     </div>
                 </div>
 
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Ders Düzenle</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Ders Adı</label>
+                                        <input type="text" class="form-control" id="lesson-name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lessonDay" class="col-form-label">Ders Günü</label>
+                                       <select class="form-control form-control-sm" id="lessonDay" runat="server">
+                                            <option>Pazartesi</option>
+                                            <option>Salı</option>
+                                            <option>Çarşamba</option>
+                                            <option>Perşembe</option>
+                                            <option>Cuma</option>
+                                            <option>Cumartesi</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lesson-clock" class="col-form-label">Ders Saati</label>
+                                        <input type="text" class="form-control" id="lesson-clock" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lesson-location" class="col-form-label">Ders Yeri</label>
+                                        <input type="text" class="form-control" id="lesson-location" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lesson-academician" class="col-form-label">Akademisyen</label>
+                                        <select class="form-control form-control-sm" id="lessonAcademician" runat="server">
+                                          
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer" id="btnDiv">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div>
                 </div>
@@ -229,19 +280,101 @@
     <script src="js/custom.min.js"></script>
 </body>
 <script>
+    var lessonId;
     function deleteLesson(id) {
         $.ajax({
-            type: "DELETE",
-            url: 'http://spring-kou-service.herokuapp.com/api/lesson/deleteLesson?lessonId=' + id + '',
+            type: "POST",
+            url: 'https://spring-kou-service.herokuapp.com/api/lesson/deleteLesson?lessonId=' + id + '',
 
             success: function (data) {
-                swal("Good job!","Akademisyen silme işlemi başarılı!", "success");
+                swal("Good job!", "Ders silme işlemi başarılı!", "success");
+                window.location.reload();
             }
         });
 
-
     }
+    function openModal(id) {
 
+        $("#lessonAcademician").empty();
+        
+        var lessonName;
+        var lessonAcademicianId;
+        var lessonAcademicianName;
+        var lessonAcademicianSurname;
+        var lessonClock;
+        var lessonDay;
+        var lessonLocation;
+        var academicianId;
+        var academicianName;
+        var academicianSurname;
+
+        $.ajax({
+            type: "GET",
+            url: 'https://spring-kou-service.herokuapp.com/api/lesson/getLesson?lessonId=' + id + '',
+
+            success: function (data) {
+                console.log(data);
+                $("#btnUpdateLesson").remove();
+                lessonId = data.ders.id;
+                lessonName = data.ders.name;
+                lessonAcademicianId = data.ders.academician.id;
+                lessonAcademicianName = data.ders.academician.name;
+                lessonAcademicianSurname = data.ders.academician.surname;
+                lessonClock = data.ders.clock;
+                lessonDay = data.ders.day;
+                lessonLocation = data.ders.location;
+                
+                document.getElementById("lesson-name").value = lessonName;
+                document.getElementById("lessonDay").value = lessonDay;
+                document.getElementById("lesson-clock").value = lessonClock;
+                document.getElementById("lesson-location").value = lessonLocation;
+                $("#btnDiv").append("<button type='button' class='btn btn-info' id='btnUpdateLesson' onclick='updateLesson(" + lessonId + ")'>Güncelle</button>");
+            }
+
+        }); 
+        $.ajax({
+            type: "GET",
+            url: 'http://spring-kou-service.herokuapp.com/api/getAcademicians',
+
+            success: function (data) {
+
+                for (i = 0; i < data.academician.length; i++) {
+
+                    academicianId = data.academician[i].id;
+                    academicianName = data.academician[i].name;
+                    academicianSurname = data.academician[i].surname;
+                    //console.log(academicianId);
+                    //console.log(lessonAcademicianId);
+                    if (lessonAcademicianId == academicianId) {
+                        $("#lessonAcademician").append("<option value='" + academicianId + "'selected>" + academicianName + " " + academicianSurname + "</option>")
+                    }
+                    else {
+                        $("#lessonAcademician").append("<option value='" + academicianId + "'>" + academicianName + " " + academicianSurname + "</option>")
+                    }
+
+                }
+
+            }
+
+        });
+    }
+    function updateLesson(id) {
+              
+        var updateLessonjson = "{\"id\":\"" + lessonId + "\",\"name\":\"" + $("#lesson-name").val() + "\",\"academician\":{\"id\":\"" + $("#lessonAcademician").val() + "\"},\"clock\":\"" + $("#lesson-clock").val() + "\",\"location\":\"" + $("#lesson-location").val() + "\",\"day\":\"" + $("#lessonDay").val() + "\"}";
+
+        $.ajax({
+            type: "POST",
+            url: 'https://spring-kou-service.herokuapp.com/api/lesson/updateLesson',
+            data: updateLessonjson,
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                window.location.reload();
+            }
+
+        }); 
+        
+    }
 </script>
 
 </html>

@@ -81,7 +81,7 @@ public partial class Lessons : System.Web.UI.Page
 
             for (int i = 0; i < AdminlessonId.Count; i++)
             {
-                lessonsDiv += $"<tr><td><a href='#' onclick='deleteLesson({AdminlessonId[i]})'><span class='mdi mdi-minus-circle-outline'></span></a></td><td><a href='#' onclick='deleteLesson(this.id)' id='{AdminlessonId[i]}'>{AdminlessonName[i]}</a></td><td>{AdminlessonDay[i]}</td><td>{AdminlessonClock[i]}</td><td>{AdminlessonLocation[i]}</td><td>{AdminlessonAcademicianName[i] + " "+AdminlessonAcademicianSurname[i]}</td></tr>";
+                lessonsDiv += $"<tr><td><a href='#exampleModal' data-toggle='modal' onclick='openModal({AdminlessonId[i]})'><span class='mdi mdi-pencil'></span></a><a href='#' onclick='deleteLesson({AdminlessonId[i]})'><span class='mdi mdi-minus-circle-outline'></span></a></td><td><a id='L{AdminlessonId[i]}'><b>{AdminlessonName[i]}</b></a></td><td>{AdminlessonDay[i]}</td><td>{AdminlessonClock[i]}</td><td>{AdminlessonLocation[i]}</td><td>{AdminlessonAcademicianName[i] + " "+AdminlessonAcademicianSurname[i]}</td></tr>";
                 ListItem myLessonList = new ListItem();
                 
             }
