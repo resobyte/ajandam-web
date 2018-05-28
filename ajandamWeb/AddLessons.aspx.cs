@@ -83,7 +83,7 @@ public partial class Admin : System.Web.UI.Page
 
     public void getAcademician()
     {
-        string Url = $@"http://spring-kou-service.herokuapp.com/api/getAcademicians";
+        string Url = $@"http://spring-kou-service.herokuapp.com/api/academician/getAcademicians";
 
         using (WebClient wc = new WebClient())
         {

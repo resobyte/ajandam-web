@@ -51,7 +51,7 @@ public partial class Admin : System.Web.UI.Page
 
         try
         {
-            string Url = "https://spring-kou-service.herokuapp.com/api/saveAcademician";
+            string Url = "https://spring-kou-service.herokuapp.com/api/academician/saveAcademician";
             using (WebClient wc = new WebClient())
             {
                 wc.Headers[HttpRequestHeader.ContentType] = "application/json";

@@ -35,6 +35,7 @@
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
+     
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -181,59 +182,76 @@
                 <div class="card">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs profile-tab" role="tablist">
-                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#settings" role="tab">Ayarlar</a> </li>
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#settings" role="tab">Genel Ayarlar</a> </li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#settingsPassword" role="tab">Parola</a> </li>
                     </ul>
-                    <!-- Tab panes -->
+                    
                     <div class="tab-content">
 
 
                         <div class="tab-pane active" id="settings" role="tabpanel">
                             <div class="card-block">
-                                <form class="form-horizontal form-material">
+                                <form class="form-horizontal form-material" runat="server">
+                                    <asp:HiddenField ID="HiddenFieldSessionID" runat="server" />
                                     <div class="form-group">
                                         <label class="col-md-12">Adınız</label>
                                         <div class="col-md-12">
-                                            <input type="text" placeholder="Ahmet" class="form-control form-control-line">
+                                            <input type="text" placeholder="Ahmet" class="form-control form-control-line" id="profileName" runat="server">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Soyadınız</label>
                                         <div class="col-md-12">
-                                            <input type="text" placeholder="Sayar" class="form-control form-control-line">
+                                            <input type="text" placeholder="Sayar" class="form-control form-control-line" id="profileSurName" runat="server">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="example-email" class="col-md-12">Kullanıcı Adınız</label>
                                         <div class="col-md-12">
-                                            <input type="email" placeholder="asayar" class="form-control form-control-line" name="example-email" id="example-email">
+                                            <input type="text" placeholder="asayar" class="form-control form-control-line" name="example-email" id="profileUsername" runat="server">
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-success" id="updateProfile" runat="server" onserverclick="updateProfile_ServerClick">Profili Güncelle</button>
+                                        </div>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                     
+                        
+                        <div class="tab-pane" id="settingsPassword" role="tabpanel">
+                            <div class="card-block">
+                                                                   
+    
+                                    <div class="form-group">
                                         <label class="col-md-12">Eski Parolanız</label>
                                         <div class="col-md-12">
-                                            <input type="password" class="form-control form-control-line">
+                                            <input type="password" class="form-control form-control-line" id="oldPassword" runat="server">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Yeni Parolanız</label>
                                         <div class="col-md-12">
-                                            <input type="password" class="form-control form-control-line">
+                                            <input type="password" class="form-control form-control-line"  id="newPassword" runat="server">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Yeni Parolanız Tekrar</label>
                                         <div class="col-md-12">
-                                            <input type="password" class="form-control form-control-line">
+                                            <input type="password" class="form-control form-control-line"  id="newPasswordAgain" runat="server">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button class="btn btn-success">Profili Güncelle</button>
+                                            <button class="btn btn-success" id="updatePassword" runat="server" onserverclick="updatePassword_ServerClick">Şifreyi Güncelle</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -247,7 +265,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer">© 2018 Material Pro Admin by wrappixel.com </footer>
+            <footer class="footer">© 2018 Ajandam Web </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
@@ -288,6 +306,11 @@
     <!-- Chart JS -->
     <script src="js/dashboard1.js"></script>
 </body>
-
+   
+        <script type="text/javascript">
+            
+        
+        
+    </script>
 </html>
 
