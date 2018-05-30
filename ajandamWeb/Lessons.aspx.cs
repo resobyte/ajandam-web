@@ -176,7 +176,7 @@ public partial class Lessons : System.Web.UI.Page
 
                     jsn = $"{{\"number\":\"{values[j][0]}\",\"name\":\"{values[j][3]}\",\"surname\":\"{values[j][4]}\"}}";
 
-                    string Url = $"https://spring-kou-service.herokuapp.com/api/lesson/saveStudent?lessonId=" + MyLesson.SelectedValue;
+                    string Url = $"https://spring-kou-service.herokuapp.com/api/lesson/saveStudent?lessonId=" + MyLesson.Value;
                     using (WebClient wc = new WebClient())
                     {
                         wc.Headers[HttpRequestHeader.ContentType] = "application/json";

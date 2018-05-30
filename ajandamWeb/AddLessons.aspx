@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AddLessons.aspx.cs" Inherits="Admin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AddLessons.aspx.cs" Inherits="Admin" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
 <html lang="en">

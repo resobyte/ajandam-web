@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Announcement.aspx.cs" Inherits="Lessons" EnableEventValidation="false"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Profile2.aspx.cs" Inherits="AdminLayout" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,11 +15,17 @@
     <title>Ajandam Web</title>
     <!-- Bootstrap Core CSS -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- chartist CSS -->
+    <link href="../assets/plugins/chartist-js/dist/chartist.min.css" rel="stylesheet">
+    <link href="../assets/plugins/chartist-js/dist/chartist-init.css" rel="stylesheet">
+    <link href="../assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+    <!--This page css - Morris CSS -->
+    <link href="../assets/plugins/c3-master/c3.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -64,7 +70,7 @@
                         <span>
 
                             <!-- Light Logo text -->
-                            <%--<img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span>--%> </a>
+                            <%--<img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>--%>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -125,6 +131,7 @@
                         <li><a class="waves-effect waves-dark" href="pages-error-404.html" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span class="hide-menu">Error 404</span></a>
                         </li>--%>
                     </ul>
+
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
@@ -133,6 +140,7 @@
             <div class="sidebar-footer">
                 <!-- item-->
                 <a href="Profile.aspx" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
+
                 <!-- item-->
                 <a href="Session.aspx" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
             </div>
@@ -154,10 +162,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Duyurularım</h3>
+                        <h3 class="text-themecolor">Profilim</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Duyurularım</li>
+                            <li class="breadcrumb-item active">Profilim</li>
                         </ol>
                     </div>
                 </div>
@@ -167,89 +175,86 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
+                <!-- Row -->
 
-                <a href="#addAnnouncement" class="link" data-toggle="modal" title="Duyuru Ekle"><i class="ti-plus"></i></a>
+                <div class="card">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs profile-tab" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#settings" role="tab">Genel Ayarlar</a> </li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#settingsPassword" role="tab">Parola</a> </li>
+                    </ul>
+
+                    <div class="tab-content">
 
 
-                <div class="modal fade" id="addAnnouncement" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Duyuru Ekle</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form id="formAnnouncement" runat="server">
+                        <div class="tab-pane active" id="settings" role="tabpanel">
+                            <div class="card-block">
+                                <form class="form-horizontal form-material">
                                     <div class="form-group">
-                                        <label for="exampleInputLessonAcademician">Ders Adı</label>
-                                        <select id="MyAnnouncementLesson" class="form-control form-control-sm" runat="server">
-                                            
-                                        </select>
+                                        <label class="col-md-12">Adınız</label>
+                                        <div class="col-md-12">
+                                            <input type="text" placeholder="Ahmet" class="form-control form-control-line">
+                                        </div>
                                     </div>
-                                    <%--<asp:DropDownList ID="MyAnnouncementLesson" runat="server"></asp:DropDownList>--%>
-                                     <div class="form-group">
-                                        <label for="exampleInputLessonClock">Duyuru Başlığı</label>
-                                        <input type="text" class="form-control form-control-sm" id="MyAnnouncementTitle" placeholder="Duyuru Başlığı" runat="server">
-                                    </div>
-                                    <%--<asp:TextBox ID="MyAnnouncementTitle" runat="server"></asp:TextBox>--%>
                                     <div class="form-group">
-                                        <label for="exampleInputLessonClock">Duyuru İçeriği</label>
-                                        <textarea type="text" class="form-control form-control-sm" id="MyAnnouncementBody" placeholder="Duyuru İçeriği" runat="server" rows="4" cols="50"></textarea>
+                                        <label class="col-md-12">Soyadınız</label>
+                                        <div class="col-md-12">
+                                            <input type="text" placeholder="Sayar" class="form-control form-control-line">
+                                        </div>
                                     </div>
-                                   <%-- <asp:TextBox ID="MyAnnouncementBody" runat="server"></asp:TextBox>--%>
-                                   
+                                    <div class="form-group">
+                                        <label for="example-email" class="col-md-12">Kullanıcı Adınız</label>
+                                        <div class="col-md-12">
+                                            <input type="email" placeholder="asayar" class="form-control form-control-line" name="example-email" id="example-email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-success">Profili Güncelle</button>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
-                            <div class="modal-footer">
-                                <button id="btnInsertAnnouncement" type="button" class="btn btn-info" data-dismiss="modal" runat="server" onserverclick="btnInsertAnnouncement_ServerClick">Duyuru Ekle</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-                            </div>
                         </div>
 
-                    </div>
-                </div>
-
-                <div class="modal fade" id="jsShowAnnouncement" role="dialog">
-                   <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 id="AnnouncementTitle" class="modal-title"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <p id="AnnouncementContent"></p>
-                            </div>
-                            <div class="modal-footer">
-
-                                <p id="AnnouncementDate"></p>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
 
 
-                <div class="row">
-                    <!-- column -->
-                    <div class="col-lg-12">
-                        <div class="card">
+
+                        <div class="tab-pane" id="settingsPassword" role="tabpanel">
                             <div class="card-block">
-                                <h4 class="card-title">Duyurularım</h4>
+                                <form class="form-horizontal form-material">
 
-                                <div class="table-responsive" id="myAnnouncement" runat="server">
-                                </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12">Eski Parolanız</label>
+                                        <div class="col-md-12">
+                                            <input type="password" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Yeni Parolanız</label>
+                                        <div class="col-md-12">
+                                            <input type="password" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Yeni Parolanız Tekrar</label>
+                                        <div class="col-md-12">
+                                            <input type="password" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-success">Şifreyi Güncelle</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <div>
-                </div>
+                    </div>
+                </div>  
+
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -260,9 +265,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer">
-                © 2018 Ajandam Web
-            </footer>
+            <footer class="footer">© 2018 Material Pro Admin by wrappixel.com </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
@@ -291,20 +294,20 @@
     <script src="../assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <!-- chartist chart -->
+    <script src="../assets/plugins/chartist-js/dist/chartist.min.js"></script>
+    <script src="../assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!--c3 JavaScript -->
+    <script src="../assets/plugins/d3/d3.min.js"></script>
+    <script src="../assets/plugins/c3-master/c3.min.js"></script>
+    <!-- Chart JS -->
+    <script src="js/dashboard1.js"></script>
 </body>
-
     <script>
-        function getText(id) {
 
-            var labelTitle = $("#" + id).text();
-            var labelContent = $("#a" + id).text();
-            var labelDate = $("#d" + id).text();
-            $("#AnnouncementTitle").text(labelTitle);
-            $("#AnnouncementContent").text(labelContent);
-            $("#AnnouncementDate").text(labelDate);
-            $('#jsShowAnnouncement').modal('show'); 
-        }
     </script>
-
 </html>
 

@@ -35,6 +35,7 @@
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
+     
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -56,7 +57,7 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="Lessons.aspx">
+                    <a class="navbar-brand" href="AdminLessons.aspx">
                         <!-- Logo icon -->
                         <b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -123,13 +124,6 @@
                         <li><a class="waves-effect waves-dark" href="Announcement.aspx" aria-expanded="false"><i class="mdi mdi-bullhorn"></i><span class="hide-menu">Duyurular</span></a>
                         </li>
                         <li><a class="waves-effect waves-dark" href="Profile.aspx" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Profilim</span></a>
-                        </li>
-                        <%--<li><a class="waves-effect waves-dark" href="map-google.html" aria-expanded="false"><i class="mdi mdi-earth"></i><span class="hide-menu">Google Map</span></a>
-                        </li>
-                        <li><a class="waves-effect waves-dark" href="pages-blank.html" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">Blank Page</span></a>
-                        </li>
-                        <li><a class="waves-effect waves-dark" href="pages-error-404.html" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span class="hide-menu">Error 404</span></a>
-                        </li>--%>
                     </ul>
 
                 </nav>
@@ -139,7 +133,7 @@
             <!-- Bottom points-->
             <div class="sidebar-footer">
                 <!-- item-->
-                <a href="Profile.aspx" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
+                <a href="AdminProfile.aspx" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
 
                 <!-- item-->
                 <a href="Session.aspx" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
@@ -183,69 +177,67 @@
                         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#settings" role="tab">Genel Ayarlar</a> </li>
                         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#settingsPassword" role="tab">Parola</a> </li>
                     </ul>
-
+                    
                     <div class="tab-content">
 
 
                         <div class="tab-pane active" id="settings" role="tabpanel">
                             <div class="card-block">
-                                <form class="form-horizontal form-material">
+                                <form class="form-horizontal form-material" runat="server">
+                                    <asp:HiddenField ID="HiddenFieldSessionID" runat="server" />
                                     <div class="form-group">
                                         <label class="col-md-12">Adınız</label>
                                         <div class="col-md-12">
-                                            <input type="text" placeholder="Ahmet" class="form-control form-control-line">
+                                            <input type="text"  class="form-control form-control-line" id="profileName" runat="server">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Soyadınız</label>
                                         <div class="col-md-12">
-                                            <input type="text" placeholder="Sayar" class="form-control form-control-line">
+                                            <input type="text" class="form-control form-control-line" id="profileSurName" runat="server">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="example-email" class="col-md-12">Kullanıcı Adınız</label>
                                         <div class="col-md-12">
-                                            <input type="email" placeholder="asayar" class="form-control form-control-line" name="example-email" id="example-email">
+                                            <input type="text" class="form-control form-control-line" name="example-email" id="profileUsername" runat="server">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button class="btn btn-success">Profili Güncelle</button>
+                                            <button class="btn btn-success" id="updateProfile" runat="server" onserverclick="updateProfile_ServerClick">Profili Güncelle</button>
                                         </div>
                                     </div>
-                                </form>
+                                
                             </div>
                         </div>
-
-
-
-
+                     
+                        
                         <div class="tab-pane" id="settingsPassword" role="tabpanel">
                             <div class="card-block">
-                                <form class="form-horizontal form-material">
-
-
+                                                                   
+    
                                     <div class="form-group">
                                         <label class="col-md-12">Eski Parolanız</label>
                                         <div class="col-md-12">
-                                            <input type="password" class="form-control form-control-line">
+                                            <input type="password" class="form-control form-control-line" id="oldPassword" runat="server">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Yeni Parolanız</label>
                                         <div class="col-md-12">
-                                            <input type="password" class="form-control form-control-line">
+                                            <input type="password" class="form-control form-control-line"  id="newPassword" runat="server">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Yeni Parolanız Tekrar</label>
                                         <div class="col-md-12">
-                                            <input type="password" class="form-control form-control-line">
+                                            <input type="password" class="form-control form-control-line"  id="newPasswordAgain" runat="server">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button class="btn btn-success">Şifreyi Güncelle</button>
+                                            <button class="btn btn-success" id="updatePassword" runat="server" onserverclick="updatePassword_ServerClick">Şifreyi Güncelle</button>
                                         </div>
                                     </div>
                                 </form>
@@ -253,7 +245,7 @@
                         </div>
 
                     </div>
-                </div>  
+                </div>
 
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -265,7 +257,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer">© 2018 Material Pro Admin by wrappixel.com </footer>
+            <footer class="footer">© 2018 Ajandam Web </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
@@ -306,8 +298,23 @@
     <!-- Chart JS -->
     <script src="js/dashboard1.js"></script>
 </body>
-    <script>
+   
+        <script type="text/javascript">
+            console.log($('#HiddenFieldSessionID').val())
+            $.ajax({
+                type: "GET",
+                url: 'https://spring-kou-service.herokuapp.com/api/academician/getAcademician/'+ $('#HiddenFieldSessionID').val(),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
 
+                    $("#profileName").val(data.academician.name);
+                    $("#profileSurName").val(data.academician.surname);
+                    $("#profileUsername").val(data.academician.username);
+                }
+
+            }); 
+        
     </script>
 </html>
 

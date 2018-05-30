@@ -6,7 +6,7 @@ https://ajandam.azurewebsites.net
 
 API: https://ramazan.github.io/slate/
 
-Examples https://ajandamweb.azurewebsites.net/Admin.aspx
+Examples https://ajandam.azurewebsites.net/
  
 Username: asayar
 Password: 1	

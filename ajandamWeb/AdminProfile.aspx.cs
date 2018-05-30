@@ -37,13 +37,30 @@ public partial class AdminLayout : System.Web.UI.Page
     {
         string Url = "https://spring-kou-service.herokuapp.com/api/academician/changeProfile";
 
-
-        using (WebClient wc = new WebClient())
+        if(!String.IsNullOrEmpty(profileName.Value) || !String.IsNullOrEmpty(profileSurName.Value) || !String.IsNullOrEmpty(profileUsername.Value))
         {
-            string updateProfilejsn = "{\"name\":\""+ profileName.Value + "\",\"surname\":\""+profileSurName.Value+"\",\"username\":\""+ profileUsername.Value + "\"}";
-            
-          
+            try
+            {
+                using (WebClient wc = new WebClient())
+                {
+
+                    string updateProfilejsn = "{\"id\":\""+Session["ID"]+"\",\"name\":\"" + profileName.Value + "\",\"surname\":\"" + profileSurName.Value + "\",\"username\":\"" + profileUsername.Value + "\"}";
+                    wc.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    wc.Encoding = System.Text.Encoding.Unicode;
+                    wc.UploadString(Url, updateProfilejsn);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "UpdateProfile", "swal(\"Good job!\", \"Profil güncelleme  işlemi başarılı!\", \"success\");", true);
+                }
+            }
+            catch
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "UpdateProfileError", "swal(\"Ayağım takıldı!\", \"Profil güncelleme  işlemi başarısız!\", \"error\");", true);
+            }
         }
+        else
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "UpdateProfileErrorNull", "swal(\"Ayağım takıldı!\", \"Değerler boş geçilemez.!\", \"error\");", true);
+        }
+       
     }
 
     protected void updatePassword_ServerClick(object sender, EventArgs e)

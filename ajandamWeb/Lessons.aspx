@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Lessons.aspx.cs" Inherits="Lessons" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Lessons.aspx.cs" Inherits="Lessons" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -170,23 +170,39 @@
 
                         <!-- Modal content-->
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Derse Öğrenci Ekle</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form runat="server">
-                                <asp:DropDownList ID="MyLesson" runat="server"></asp:DropDownList>
-                                <asp:FileUpload ID="MyLessonFileUpload" runat="server" />
-                                <button id="btnInsertStudentLesson" type="button" class="btn btn-default" data-dismiss="modal" runat="server" onserverclick="btnInsertStudentLesson_ServerClick">Ekle</button>
+                            <div class="row">
+                                <!-- column -->
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-block">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Derse Öğrenci Ekle</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form runat="server">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputLessonAcademician">Ders Adı</label>
+                                                        <select id="MyLesson" class="form-control form-control-sm" runat="server">
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputLessonPlace">Dosya Seçiniz</label><br />
+                                                        <asp:FileUpload  ID="MyLessonFileUpload" runat="server" />
+                                                    </div>
+                                                    
 
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button id="Button1" type="button" class="btn btn-info" data-dismiss="modal" runat="server" onserverclick="btnInsertStudentLesson_ServerClick">Öğrenci Ekle</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <!-- ============================================================== -->
@@ -270,25 +286,25 @@
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
 </body>
-    <script>
-        function goPost(id) {
-            $.ajax({
-                type: "GET",
-                url: 'https://spring-kou-service.herokuapp.com/api/students/'+id+'/lessonId',
-                //data: { lessonId:id},
-                success: function (data) {
-                    console.log(data.length);
-                    for (i = 0; i < data.length; i++) {
-                        console.log(data.data[i].name);
-                    }
-                    
+<script>
+    function goPost(id) {
+        $.ajax({
+            type: "GET",
+            url: 'https://spring-kou-service.herokuapp.com/api/students/' + id + '/lessonId',
+            //data: { lessonId:id},
+            success: function (data) {
+                console.log(data.length);
+                for (i = 0; i < data.length; i++) {
+                    console.log(data.data[i].name);
                 }
-            });
+
+            }
+        });
 
 
-        }
+    }
 
-    </script>
+</script>
 
 </html>
 

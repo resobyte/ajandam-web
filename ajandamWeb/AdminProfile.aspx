@@ -196,19 +196,19 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Adınız</label>
                                         <div class="col-md-12">
-                                            <input type="text" placeholder="Ahmet" class="form-control form-control-line" id="profileName" runat="server">
+                                            <input type="text"  class="form-control form-control-line" id="profileName" runat="server">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Soyadınız</label>
                                         <div class="col-md-12">
-                                            <input type="text" placeholder="Sayar" class="form-control form-control-line" id="profileSurName" runat="server">
+                                            <input type="text" class="form-control form-control-line" id="profileSurName" runat="server">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="example-email" class="col-md-12">Kullanıcı Adınız</label>
                                         <div class="col-md-12">
-                                            <input type="text" placeholder="asayar" class="form-control form-control-line" name="example-email" id="profileUsername" runat="server">
+                                            <input type="text" class="form-control form-control-line" name="example-email" id="profileUsername" runat="server">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -309,7 +309,19 @@
    
         <script type="text/javascript">
             
-        
+            $.ajax({
+                type: "GET",
+                url: 'https://spring-kou-service.herokuapp.com/api/academician/getAcademician/'+ $('#HiddenFieldSessionID').val(),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+                    $("#profileName").val(data.academician.name);
+                    $("#profileSurName").val(data.academician.surname);
+                    $("#profileUsername").val(data.academician.username);
+                }
+
+            }); 
         
     </script>
 </html>

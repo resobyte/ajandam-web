@@ -293,10 +293,11 @@
         });
 
     }
+    
     function openModal(id) {
 
         $("#lessonAcademician").empty();
-        
+        var lessonAcademicianId;
         var lessonName;
         var lessonAcademicianId;
         var lessonAcademicianName;
@@ -313,7 +314,7 @@
             url: 'https://spring-kou-service.herokuapp.com/api/lesson/getLesson?lessonId=' + id + '',
 
             success: function (data) {
-                console.log(data);
+               
                 $("#btnUpdateLesson").remove();
                 lessonId = data.ders.id;
                 lessonName = data.ders.name;
@@ -329,34 +330,11 @@
                 document.getElementById("lesson-clock").value = lessonClock;
                 document.getElementById("lesson-location").value = lessonLocation;
                 $("#btnDiv").append("<button type='button' class='btn btn-info' id='btnUpdateLesson' onclick='updateLesson(" + lessonId + ")'>Güncelle</button>");
+                getAcademician(lessonAcademicianId);
             }
 
         }); 
-        $.ajax({
-            type: "GET",
-            url: 'http://spring-kou-service.herokuapp.com/api/getAcademicians',
-
-            success: function (data) {
-
-                for (i = 0; i < data.academician.length; i++) {
-
-                    academicianId = data.academician[i].id;
-                    academicianName = data.academician[i].name;
-                    academicianSurname = data.academician[i].surname;
-                    //console.log(academicianId);
-                    //console.log(lessonAcademicianId);
-                    if (lessonAcademicianId == academicianId) {
-                        $("#lessonAcademician").append("<option value='" + academicianId + "'selected>" + academicianName + " " + academicianSurname + "</option>")
-                    }
-                    else {
-                        $("#lessonAcademician").append("<option value='" + academicianId + "'>" + academicianName + " " + academicianSurname + "</option>")
-                    }
-
-                }
-
-            }
-
-        });
+      
     }
     function updateLesson(id) {
               
@@ -374,6 +352,32 @@
 
         }); 
         
+    }
+    function getAcademician(lessonAcademicianId) {
+        $.ajax({
+            type: "GET",
+            url: 'http://spring-kou-service.herokuapp.com/api/academician/getAcademicians',
+
+            success: function (data) {
+
+                for (i = 0; i < data.academician.length; i++) {
+
+                    academicianId = data.academician[i].id;
+                    academicianName = data.academician[i].name;
+                    academicianSurname = data.academician[i].surname;
+                    console.log(academicianId + "-" + lessonAcademicianId);
+                    if (academicianId == lessonAcademicianId) {
+                        $("#lessonAcademician").append("<option value='" + academicianId + "'selected>" + academicianName + " " + academicianSurname + "</option>")
+                    }
+                    else {
+                        $("#lessonAcademician").append("<option value='" + academicianId + "'>" + academicianName + " " + academicianSurname + "</option>")
+                    }
+
+                }
+
+            }
+
+        });
     }
 </script>
 

@@ -36,7 +36,7 @@ public partial class Lessons : System.Web.UI.Page
 
 
     protected void Page_Load(object sender, EventArgs e)
-    {
+    {   
         lessonName.Clear();
         lessonClock.Clear();
         lessonDay.Clear();
@@ -102,16 +102,17 @@ public partial class Lessons : System.Web.UI.Page
     }
 
     protected void btnInsertAnnouncement_ServerClick(object sender, EventArgs e)
-    {
-        if (String.IsNullOrEmpty(MyAnnouncementTitle.Text) || String.IsNullOrEmpty(MyAnnouncementBody.Text))
+    {  
+
+        if (String.IsNullOrEmpty(MyAnnouncementTitle.Value) || String.IsNullOrEmpty(MyAnnouncementBody.Value))
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorPageAnnouncement", "swal(\"Ayağım takıldı!\", \"Duyuru başlığı veya Duyuru içeriği boş olamaz!\", \"error\");", true);
         }
 
         else
         {
-            string insertAnnouncementjson = $"{{\"title\":\"{MyAnnouncementTitle.Text}\",\"content\":\"{MyAnnouncementBody.Text}\",";
-            insertAnnouncementjson += "\"academician\":{\"id\":\"" + Session["ID"] + "\"},\"lesson\":{\"id\":\"" + MyAnnouncementLesson.SelectedValue + "\"}}";
+            string insertAnnouncementjson = $"{{\"title\":\"{MyAnnouncementTitle.Value}\",\"content\":\"{MyAnnouncementBody.Value}\",";
+            insertAnnouncementjson += "\"academician\":{\"id\":\"" + Session["ID"] + "\"},\"lesson\":{\"id\":\"" + MyAnnouncementLesson.Value + "\"}}";
 
             string Url = $"https://spring-kou-service.herokuapp.com/api/announcement";
             using (WebClient wc = new WebClient())
