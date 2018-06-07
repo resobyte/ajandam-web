@@ -163,7 +163,7 @@
                     </div>
                 </div>
 
-                <a href="#addLesson" class="link" data-toggle="modal" title="Derse Öğrenci Ekle" onclick="FillDropDownLessons()"><i class="ti-plus"></i></a>
+                <a href="#addLesson" class="link" data-toggle="modal" title="Derse Öğrenci Ekle" ><i class="ti-plus"></i></a>
                 <br />
                 <div class="modal fade" id="addLesson" role="dialog">
                     <div class="modal-dialog">
@@ -188,9 +188,9 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputLessonPlace">Dosya Seçiniz</label><br />
-                                                        <asp:FileUpload  ID="MyLessonFileUpload" runat="server" />
+                                                        <asp:FileUpload ID="MyLessonFileUpload" runat="server" />
                                                     </div>
-                                                    
+
 
                                                 </form>
                                             </div>
@@ -201,6 +201,45 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="detailLesson" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="detailLessonModalLabel"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container">
+                                    
+                                    <table class="table">
+                                        <thead id="head">
+                                            <tr>
+                                                <th>Numarası</th>
+                                                <th>Adı</th>
+                                                <th>Soyadı</th>
+                                                <th>Devam Bilgisi</th>
+                                                <th>Devamsızlık Bilgisi</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tBody">
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                            <div class="modal-footer" id="btndetailDiv">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+
                             </div>
                         </div>
                     </div>
@@ -287,21 +326,37 @@
     <script src="js/custom.min.js"></script>
 </body>
 <script>
+    function hideDiv() {
+        $("#detailLesson").modal('hide');
+    }
     function goPost(id) {
         $.ajax({
             type: "GET",
-            url: 'https://spring-kou-service.herokuapp.com/api/students/' + id + '/lessonId',
-            //data: { lessonId:id},
+            url: 'https://spring-kou-service.herokuapp.com/api/lesson/rollcall?lessonId='+id,
             success: function (data) {
-                console.log(data.length);
-                for (i = 0; i < data.length; i++) {
-                    console.log(data.data[i].name);
-                }
 
+                console.log(data.ogrenci_devam_bilgileri)
+
+                if (undefined !== data.ogrenci_devam_bilgileri) {
+                    $("#detailLessonModalLabel").text(data.ogrenci_devam_bilgileri[0].devamsizlik.dersAdi);
+                    $("#tBody tr").remove();
+                    $("#nullReference").remove();
+
+                    for (i = 0; i < data.ogrenci_devam_bilgileri.length; i++) {
+
+                        $("#tBody").append('<tr><th>' + data.ogrenci_devam_bilgileri[i].ogrenci.number + '</th><th>' + data.ogrenci_devam_bilgileri[i].ogrenci.name + '</th><th>' + data.ogrenci_devam_bilgileri[i].ogrenci.surname + '</th><th>' + data.ogrenci_devam_bilgileri[i].devamsizlik.devamBilgisi + '</th><th>' + data.ogrenci_devam_bilgileri[i].devamsizlik.devamsizlikBilgisi + '</th></tr>')
+
+                    }
+                }
+                else {
+                    $("#head").remove();
+                    $("#nullReference").remove();
+                    $("#tBody").append('<div id="nullReference"><b>Bu derse kayıtlı öğrenci bulunmamaktadır. Derse öğrenci eklemek için <a href="#addLesson" onclick="hideDiv()" class="link" data-toggle="modal">tıklayınız.</a></b></div>');
+                }
             }
         });
 
-
+      
     }
 
 </script>

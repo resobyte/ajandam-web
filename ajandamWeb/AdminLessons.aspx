@@ -202,7 +202,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="lessonDay" class="col-form-label">Ders Günü</label>
-                                       <select class="form-control form-control-sm" id="lessonDay" runat="server">
+                                        <select class="form-control form-control-sm" id="Select1" runat="server">
                                             <option>Pazartesi</option>
                                             <option>Salı</option>
                                             <option>Çarşamba</option>
@@ -221,19 +221,19 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="lesson-academician" class="col-form-label">Akademisyen</label>
-                                        <select class="form-control form-control-sm" id="lessonAcademician" runat="server">
-                                          
+                                        <select class="form-control form-control-sm" id="Select2" runat="server">
                                         </select>
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer" id="btnDiv">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-                                
+
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <div>
                 </div>
@@ -293,7 +293,7 @@
         });
 
     }
-    
+
     function openModal(id) {
 
         $("#lessonAcademician").empty();
@@ -314,7 +314,7 @@
             url: 'https://spring-kou-service.herokuapp.com/api/lesson/getLesson?lessonId=' + id + '',
 
             success: function (data) {
-               
+
                 $("#btnUpdateLesson").remove();
                 lessonId = data.ders.id;
                 lessonName = data.ders.name;
@@ -324,7 +324,7 @@
                 lessonClock = data.ders.clock;
                 lessonDay = data.ders.day;
                 lessonLocation = data.ders.location;
-                
+
                 document.getElementById("lesson-name").value = lessonName;
                 document.getElementById("lessonDay").value = lessonDay;
                 document.getElementById("lesson-clock").value = lessonClock;
@@ -333,25 +333,25 @@
                 getAcademician(lessonAcademicianId);
             }
 
-        }); 
-      
+        });
+
     }
     function updateLesson(id) {
-              
+
         var updateLessonjson = "{\"id\":\"" + lessonId + "\",\"name\":\"" + $("#lesson-name").val() + "\",\"academician\":{\"id\":\"" + $("#lessonAcademician").val() + "\"},\"clock\":\"" + $("#lesson-clock").val() + "\",\"location\":\"" + $("#lesson-location").val() + "\",\"day\":\"" + $("#lessonDay").val() + "\"}";
 
         $.ajax({
             type: "POST",
             url: 'https://spring-kou-service.herokuapp.com/api/lesson/updateLesson',
             data: updateLessonjson,
-            dataType:"json",
+            dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function (data) {
                 window.location.reload();
             }
 
-        }); 
-        
+        });
+
     }
     function getAcademician(lessonAcademicianId) {
         $.ajax({
