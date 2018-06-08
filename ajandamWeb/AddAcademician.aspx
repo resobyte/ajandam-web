@@ -17,7 +17,8 @@
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script>
+    <script src="js/sweetalert.min.js"></script>
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -112,7 +113,7 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                         <li><a class="waves-effect waves-dark" href="AdminLessons.aspx" aria-expanded="false"><i class="mdi  mdi-bookmark"></i><span class="hide-menu">Dersler</span></a>
+                        <li><a class="waves-effect waves-dark" href="AdminLessons.aspx" aria-expanded="false"><i class="mdi  mdi-bookmark"></i><span class="hide-menu">Dersler</span></a>
                         <li><a class="waves-effect waves-dark" href="AddLessons.aspx" aria-expanded="false"><i class="mdi  mdi-bookmark-plus"></i><span class="hide-menu">Ders Ekle</span></a>
                         </li>
                         <li><a class="waves-effect waves-dark" href="AddAcademician.aspx" aria-expanded="false"><i class="mdi mdi-account-multiple-plus"></i><span class="hide-menu">Akademisyen Ekle</span></a>
@@ -162,7 +163,7 @@
                             <div class="card-block">
                                 <h4 class="card-title">Akademisyen Ekle</h4>
                                 <form runat="server">
-                                      <div class="form-group">
+                                    <div class="form-group">
                                         <label for="exampleInputLessonDay">Ünvanı</label>
                                         <select id="exampleInputAcademicianTitle" class="form-control form-control-sm" runat="server">
                                             <option>Prof.Dr</option>
@@ -176,7 +177,7 @@
                                         <input type="text" class="form-control form-control-sm" id="exampleInputAcademicianName" aria-describedby="emailHelp" placeholder="Pınar Onay" runat="server">
                                         <%--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>--%>
                                     </div>
-                                  
+
                                     <div class="form-group">
                                         <label for="exampleInputLessonClock">Akademisyen Soyadı</label>
                                         <input type="text" class="form-control form-control-sm" id="exampleInputAcademicianSurname" placeholder="Durdu" runat="server">

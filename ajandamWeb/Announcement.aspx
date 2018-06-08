@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Announcement.aspx.cs" Inherits="Lessons" EnableEventValidation="false"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Announcement.aspx.cs" Inherits="Lessons" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,13 +11,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
+    <script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script>
     <link rel="icon" type="image/png" sizes="16x16" href="img/logo.png">
     <title>Ajandam Web</title>
     <!-- Bootstrap Core CSS -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="js/sweetalert.min.js"></script>
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -185,11 +186,10 @@
                                     <div class="form-group">
                                         <label for="exampleInputLessonAcademician">Ders Adı</label>
                                         <select id="MyAnnouncementLesson" class="form-control form-control-sm" runat="server">
-                                            
                                         </select>
                                     </div>
                                     <%--<asp:DropDownList ID="MyAnnouncementLesson" runat="server"></asp:DropDownList>--%>
-                                     <div class="form-group">
+                                    <div class="form-group">
                                         <label for="exampleInputLessonClock">Duyuru Başlığı</label>
                                         <input type="text" class="form-control form-control-sm" id="MyAnnouncementTitle" placeholder="Duyuru Başlığı" runat="server">
                                     </div>
@@ -198,8 +198,7 @@
                                         <label for="exampleInputLessonClock">Duyuru İçeriği</label>
                                         <textarea type="text" class="form-control form-control-sm" id="MyAnnouncementBody" placeholder="Duyuru İçeriği" runat="server" rows="4" cols="50"></textarea>
                                     </div>
-                                   <%-- <asp:TextBox ID="MyAnnouncementBody" runat="server"></asp:TextBox>--%>
-                                   
+                                    <%-- <asp:TextBox ID="MyAnnouncementBody" runat="server"></asp:TextBox>--%>
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -212,7 +211,7 @@
                 </div>
 
                 <div class="modal fade" id="jsShowAnnouncement" role="dialog">
-                   <div class="modal-dialog">
+                    <div class="modal-dialog">
 
                         <!-- Modal content-->
                         <div class="modal-content">
@@ -293,18 +292,18 @@
     <script src="js/custom.min.js"></script>
 </body>
 
-    <script>
-        function getText(id) {
+<script>
+    function getText(id) {
 
-            var labelTitle = $("#" + id).text();
-            var labelContent = $("#a" + id).text();
-            var labelDate = $("#d" + id).text();
-            $("#AnnouncementTitle").text(labelTitle);
-            $("#AnnouncementContent").text(labelContent);
-            $("#AnnouncementDate").text(labelDate);
-            $('#jsShowAnnouncement').modal('show'); 
-        }
-    </script>
+        var labelTitle = $("#" + id).text();
+        var labelContent = $("#a" + id).text();
+        var labelDate = $("#d" + id).text();
+        $("#AnnouncementTitle").text(labelTitle);
+        $("#AnnouncementContent").text(labelContent);
+        $("#AnnouncementDate").text(labelDate);
+        $('#jsShowAnnouncement').modal('show');
+    }
+</script>
 
 </html>
 

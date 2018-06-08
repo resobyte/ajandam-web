@@ -15,12 +15,13 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Ajandam Web</title>
     <!-- Bootstrap Core CSS -->
+    <script src="js/sweetalert.min.js"></script>
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -163,7 +164,7 @@
                     </div>
                 </div>
 
-                <a href="#addLesson" class="link" data-toggle="modal" title="Derse Öğrenci Ekle" ><i class="ti-plus"></i></a>
+                <a href="#addLesson" class="link" data-toggle="modal" title="Derse Öğrenci Ekle"><i class="ti-plus"></i></a>
                 <br />
                 <div class="modal fade" id="addLesson" role="dialog">
                     <div class="modal-dialog">
@@ -217,7 +218,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="container">
-                                    
+
                                     <table class="table">
                                         <thead id="head">
                                             <tr>
@@ -226,11 +227,10 @@
                                                 <th>Soyadı</th>
                                                 <th>Devam Bilgisi</th>
                                                 <th>Devamsızlık Bilgisi</th>
-                                                
+
                                             </tr>
                                         </thead>
                                         <tbody id="tBody">
-                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -332,10 +332,8 @@
     function goPost(id) {
         $.ajax({
             type: "GET",
-            url: 'https://spring-kou-service.herokuapp.com/api/lesson/rollcall?lessonId='+id,
+            url: 'https://spring-kou-service.herokuapp.com/api/lesson/rollcall?lessonId=' + id,
             success: function (data) {
-
-                console.log(data.ogrenci_devam_bilgileri)
 
                 if (undefined !== data.ogrenci_devam_bilgileri) {
                     $("#detailLessonModalLabel").text(data.ogrenci_devam_bilgileri[0].devamsizlik.dersAdi);
@@ -356,7 +354,7 @@
             }
         });
 
-      
+
     }
 
 </script>

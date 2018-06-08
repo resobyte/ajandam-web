@@ -25,7 +25,8 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script>
+    <script src="js/sweetalert.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -35,7 +36,7 @@
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
-     
+
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -185,7 +186,7 @@
                         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#settings" role="tab">Genel Ayarlar</a> </li>
                         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#settingsPassword" role="tab">Parola</a> </li>
                     </ul>
-                    
+
                     <div class="tab-content">
 
 
@@ -196,7 +197,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Adınız</label>
                                         <div class="col-md-12">
-                                            <input type="text"  class="form-control form-control-line" id="profileName" runat="server">
+                                            <input type="text" class="form-control form-control-line" id="profileName" runat="server">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -216,38 +217,37 @@
                                             <button class="btn btn-success" id="updateProfile" runat="server" onserverclick="updateProfile_ServerClick">Profili Güncelle</button>
                                         </div>
                                     </div>
-                                
                             </div>
                         </div>
-                     
-                        
+
+
                         <div class="tab-pane" id="settingsPassword" role="tabpanel">
                             <div class="card-block">
-                                                                   
-    
-                                    <div class="form-group">
-                                        <label class="col-md-12">Eski Parolanız</label>
-                                        <div class="col-md-12">
-                                            <input type="password" class="form-control form-control-line" id="oldPassword" runat="server">
-                                        </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-md-12">Eski Parolanız</label>
+                                    <div class="col-md-12">
+                                        <input type="password" class="form-control form-control-line" id="oldPassword" runat="server">
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Yeni Parolanız</label>
-                                        <div class="col-md-12">
-                                            <input type="password" class="form-control form-control-line"  id="newPassword" runat="server">
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Yeni Parolanız</label>
+                                    <div class="col-md-12">
+                                        <input type="password" class="form-control form-control-line" id="newPassword" runat="server">
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Yeni Parolanız Tekrar</label>
-                                        <div class="col-md-12">
-                                            <input type="password" class="form-control form-control-line"  id="newPasswordAgain" runat="server">
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Yeni Parolanız Tekrar</label>
+                                    <div class="col-md-12">
+                                        <input type="password" class="form-control form-control-line" id="newPasswordAgain" runat="server">
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button class="btn btn-success" id="updatePassword" runat="server" onserverclick="updatePassword_ServerClick">Şifreyi Güncelle</button>
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-success" id="updatePassword" runat="server" onserverclick="updatePassword_ServerClick">Şifreyi Güncelle</button>
                                     </div>
+                                </div>
                                 </form>
                             </div>
                         </div>
@@ -306,23 +306,23 @@
     <!-- Chart JS -->
     <script src="js/dashboard1.js"></script>
 </body>
-   
-        <script type="text/javascript">
-            
-            $.ajax({
-                type: "GET",
-                url: 'https://spring-kou-service.herokuapp.com/api/academician/getAcademician/'+ $('#HiddenFieldSessionID').val(),
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
 
-                    $("#profileName").val(data.academician.name);
-                    $("#profileSurName").val(data.academician.surname);
-                    $("#profileUsername").val(data.academician.username);
-                }
+<script type="text/javascript">
 
-            }); 
-        
-    </script>
+    $.ajax({
+        type: "GET",
+        url: 'https://spring-kou-service.herokuapp.com/api/academician/getAcademician/' + $('#HiddenFieldSessionID').val(),
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+
+            $("#profileName").val(data.academician.name);
+            $("#profileSurName").val(data.academician.surname);
+            $("#profileUsername").val(data.academician.username);
+        }
+
+    });
+
+</script>
 </html>
 
