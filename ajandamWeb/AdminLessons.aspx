@@ -202,7 +202,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="lessonDay" class="col-form-label">Ders Günü</label>
-                                        <select class="form-control form-control-sm" id="Select1" runat="server">
+                                        <select class="form-control form-control-sm" id="lessonDay" runat="server">
                                             <option>Pazartesi</option>
                                             <option>Salı</option>
                                             <option>Çarşamba</option>
@@ -221,7 +221,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="lesson-academician" class="col-form-label">Akademisyen</label>
-                                        <select class="form-control form-control-sm" id="Select2" runat="server">
+                                        <select class="form-control form-control-sm" id="lessonAcademician" runat="server">
                                         </select>
                                     </div>
                                 </form>
@@ -281,6 +281,7 @@
 </body>
 <script>
     var lessonId;
+
     function deleteLesson(id) {
         $.ajax({
             type: "POST",
@@ -293,7 +294,6 @@
         });
 
     }
-
     function openModal(id) {
 
         $("#lessonAcademician").empty();
@@ -325,6 +325,11 @@
                 lessonDay = data.ders.day;
                 lessonLocation = data.ders.location;
 
+                console.log(lessonClock);
+                console.log(lessonDay);
+                console.log(lessonLocation);
+
+
                 document.getElementById("lesson-name").value = lessonName;
                 document.getElementById("lessonDay").value = lessonDay;
                 document.getElementById("lesson-clock").value = lessonClock;
@@ -338,20 +343,25 @@
     }
     function updateLesson(id) {
 
-        var updateLessonjson = "{\"id\":\"" + lessonId + "\",\"name\":\"" + $("#lesson-name").val() + "\",\"academician\":{\"id\":\"" + $("#lessonAcademician").val() + "\"},\"clock\":\"" + $("#lesson-clock").val() + "\",\"location\":\"" + $("#lesson-location").val() + "\",\"day\":\"" + $("#lessonDay").val() + "\"}";
+        if (lessonId == "" || $("#lesson-name").val() == "" || $("#lessonAcademician").val() == "" || $("#lesson-clock").val() == "" || $("#lesson-location").val() == "") {
+            swal("Error!", "Doldurulması gereken alanlar var!", "error");
+        }
+        else {
+            var updateLessonjson = "{\"id\":\"" + lessonId + "\",\"name\":\"" + $("#lesson-name").val() + "\",\"academician\":{\"id\":\"" + $("#lessonAcademician").val() + "\"},\"clock\":\"" + $("#lesson-clock").val() + "\",\"location\":\"" + $("#lesson-location").val() + "\",\"day\":\"" + $("#lessonDay").val() + "\"}";
 
-        $.ajax({
-            type: "POST",
-            url: 'https://spring-kou-service.herokuapp.com/api/lesson/updateLesson',
-            data: updateLessonjson,
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success: function (data) {
-                window.location.reload();
-            }
+            $.ajax({
+                type: "POST",
+                url: 'https://spring-kou-service.herokuapp.com/api/lesson/updateLesson',
+                data: updateLessonjson,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    swal("Good job!", "Ders güncelleme işlemi başarılı!", "success");
+                    window.location.reload();
+                }
 
-        });
-
+            });
+        }
     }
     function getAcademician(lessonAcademicianId) {
         $.ajax({
@@ -365,7 +375,7 @@
                     academicianId = data.academician[i].id;
                     academicianName = data.academician[i].name;
                     academicianSurname = data.academician[i].surname;
-                    console.log(academicianId + "-" + lessonAcademicianId);
+                  
                     if (academicianId == lessonAcademicianId) {
                         $("#lessonAcademician").append("<option value='" + academicianId + "'selected>" + academicianName + " " + academicianSurname + "</option>")
                     }

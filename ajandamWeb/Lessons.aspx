@@ -330,6 +330,11 @@
         $("#detailLesson").modal('hide');
     }
     function goPost(id) {
+
+        var nullReference = document.getElementById("nullReference");
+        var tbody = document.getElementById("tBody tr");
+        var head = document.getElementById("head");
+        
         $.ajax({
             type: "GET",
             url: 'https://spring-kou-service.herokuapp.com/api/lesson/rollcall?lessonId=' + id,
@@ -337,9 +342,8 @@
 
                 if (undefined !== data.ogrenci_devam_bilgileri) {
                     $("#detailLessonModalLabel").text(data.ogrenci_devam_bilgileri[0].devamsizlik.dersAdi);
-                    $("#tBody tr").remove();
-                    $("#nullReference").remove();
-
+                    tbody.remove();
+                    nullReference.remove();
                     for (i = 0; i < data.ogrenci_devam_bilgileri.length; i++) {
 
                         $("#tBody").append('<tr><th>' + data.ogrenci_devam_bilgileri[i].ogrenci.number + '</th><th>' + data.ogrenci_devam_bilgileri[i].ogrenci.name + '</th><th>' + data.ogrenci_devam_bilgileri[i].ogrenci.surname + '</th><th>' + data.ogrenci_devam_bilgileri[i].devamsizlik.devamBilgisi + '</th><th>' + data.ogrenci_devam_bilgileri[i].devamsizlik.devamsizlikBilgisi + '</th></tr>')
@@ -347,8 +351,10 @@
                     }
                 }
                 else {
-                    $("#head").remove();
-                    $("#nullReference").remove();
+                    tbody.remove();
+                    head.remove();
+                    nullReference.remove();
+
                     $("#tBody").append('<div id="nullReference"><b>Bu derse kayıtlı öğrenci bulunmamaktadır. Derse öğrenci eklemek için <a href="#addLesson" onclick="hideDiv()" class="link" data-toggle="modal">tıklayınız.</a></b></div>');
                 }
             }
