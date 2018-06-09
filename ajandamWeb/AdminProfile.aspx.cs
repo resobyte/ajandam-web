@@ -37,14 +37,18 @@ public partial class AdminLayout : System.Web.UI.Page
     {
         string Url = "https://spring-kou-service.herokuapp.com/api/academician/changeProfile";
 
-        if(!String.IsNullOrEmpty(profileName.Value) || !String.IsNullOrEmpty(profileSurName.Value) || !String.IsNullOrEmpty(profileUsername.Value))
+        if((profileName.Value) == "" || (profileSurName.Value) == "" || (profileUsername.Value) == "")
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "UpdateProfileErrorNull", "swal(\"Ayağım takıldı!\", \"Değerler boş geçilemez.!\", \"error\");", true);
+        }
+        else
         {
             try
             {
                 using (WebClient wc = new WebClient())
                 {
 
-                    string updateProfilejsn = "{\"id\":\""+Session["ID"]+"\",\"name\":\"" + profileName.Value + "\",\"surname\":\"" + profileSurName.Value + "\",\"username\":\"" + profileUsername.Value + "\"}";
+                    string updateProfilejsn = "{\"id\":\"" + Session["ID"] + "\",\"name\":\"" + profileName.Value + "\",\"surname\":\"" + profileSurName.Value + "\",\"username\":\"" + profileUsername.Value + "\"}";
                     wc.Headers[HttpRequestHeader.ContentType] = "application/json";
                     wc.Encoding = System.Text.Encoding.Unicode;
                     wc.UploadString(Url, updateProfilejsn);
@@ -55,10 +59,7 @@ public partial class AdminLayout : System.Web.UI.Page
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "UpdateProfileError", "swal(\"Ayağım takıldı!\", \"Profil güncelleme  işlemi başarısız!\", \"error\");", true);
             }
-        }
-        else
-        {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "UpdateProfileErrorNull", "swal(\"Ayağım takıldı!\", \"Değerler boş geçilemez.!\", \"error\");", true);
+           
         }
        
     }
@@ -67,8 +68,13 @@ public partial class AdminLayout : System.Web.UI.Page
     {
         
 
-        if (!String.IsNullOrEmpty(newPassword.Value) || !String.IsNullOrEmpty(oldPassword.Value))
-        {   
+        if ((newPassword.Value) == "" || (oldPassword.Value) == "" || (newPasswordAgain.Value) =="")
+        {
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorUpdatePasswordNull", "swal(\"Ayağım takıldı!\", \"Değerler boş geçilemez\", \"error\");", true);
+        }
+        else
+        {
             if ((newPasswordAgain.Value == newPassword.Value))
             {
                 try
@@ -92,10 +98,6 @@ public partial class AdminLayout : System.Web.UI.Page
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorUpdatePassword", "swal(\"Ayağım takıldı!\", \"Şifreler uyuşmuyor.\", \"error\");", true);
             }
-        }
-        else
-        {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorUpdatePasswordNull", "swal(\"Ayağım takıldı!\", \"Boş geçilemez\", \"error\");", true);
         }
     }
 }
