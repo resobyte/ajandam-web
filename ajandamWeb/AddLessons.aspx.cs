@@ -41,44 +41,51 @@ public partial class Admin : System.Web.UI.Page
 
     protected void btnAddLessons_ServerClick(object sender, EventArgs e)
     {
-        if (String.IsNullOrEmpty(exampleInputLessonName.Value) || String.IsNullOrEmpty(exampleInputLessonDay.Value) || String.IsNullOrEmpty(exampleInputLessonClock.Value) || String.IsNullOrEmpty(exampleInputLessonPlace.Value))
+        if ((exampleInputLessonName.Value) == "" || (exampleInputLessonDay.Value) == "" || (exampleInputLessonClock.Value) == "" || (exampleInputLessonPlace.Value) == "")
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorAddLesson", "swal(\"Ayağım takıldı!\", \"Ders Adı, Ders Günü, Ders Saati veya Ders Yeri boş olamaz!\", \"error\");", true);
         }
-        else /*if (exampleInputLessonClock.Equals(":"))*/
+        else 
         {
-            string LessonName = exampleInputLessonName.Value;
-            string LessonDay = exampleInputLessonDay.Value;
-            string LessonClock = exampleInputLessonClock.Value;
-            string LessonLocation = exampleInputLessonPlace.Value;
-
-            addLessonJsonBody = $"{{\"name\":\"{LessonName}\",";
-            addLessonJsonBody += "\"academician\":{\"id\":\"" + ddlAcademician.Value + "\"},\"clock\":\"" + LessonClock + "\",\"location\":\"" + LessonLocation + "\",\"day\":\"" + LessonDay + "\"}";
-        }
-        //else
-        //{
-        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorAddClock", "swal(\"Ayağım takıldı!\", \"Ders Saati ':' içermelidir.\", \"error\");", true);
-        //}
-
-        try
-        {
-            string Url = "https://spring-kou-service.herokuapp.com/api/lesson/saveLesson";
-            using (WebClient wc = new WebClient())
+            if (exampleInputLessonClock.Value.Contains(":"))
             {
-                wc.Headers[HttpRequestHeader.ContentType] = "application/json";
-                wc.Encoding = System.Text.Encoding.Unicode;
-                wc.UploadString(Url, addLessonJsonBody);
+
+                string LessonName = exampleInputLessonName.Value;
+                string LessonDay = exampleInputLessonDay.Value;
+                string LessonClock = exampleInputLessonClock.Value;
+                string LessonLocation = exampleInputLessonPlace.Value;
+
+                addLessonJsonBody = $"{{\"name\":\"{LessonName}\",";
+                addLessonJsonBody += "\"academician\":{\"id\":\"" + ddlAcademician.Value + "\"},\"clock\":\"" + LessonClock + "\",\"location\":\"" + LessonLocation + "\",\"day\":\"" + LessonDay + "\"}";
+
+                try
+                {
+                    string Url = "https://spring-kou-service.herokuapp.com/api/lesson/saveLesson";
+                    using (WebClient wc = new WebClient())
+                    {
+                        wc.Headers[HttpRequestHeader.ContentType] = "application/json";
+                        wc.Encoding = System.Text.Encoding.Unicode;
+                        wc.UploadString(Url, addLessonJsonBody);
+                    }
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "SuccessAddLessons", "swal(\"Good job!\", \"Ders ekleme işlemi başarılı!\", \"success\");", true);
+                    exampleInputLessonName.Value = null;
+                    exampleInputLessonDay.Value = null;
+                    exampleInputLessonClock.Value = null;
+                    exampleInputLessonPlace.Value = null;
+                }
+                catch
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorAddLessons", "swal(\"Ayağım takıldı!\", \"İşlem başarısız.Bağlantı sorunum olabilir!\", \"error\");", true);
+                }
             }
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "SuccessAddLessons", "swal(\"Good job!\", \"Ders ekleme işlemi başarılı!\", \"success\");", true);
-            exampleInputLessonName.Value = null;
-            exampleInputLessonDay.Value = null;
-            exampleInputLessonClock.Value = null;
-            exampleInputLessonPlace.Value = null;
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorAddClock", "swal(\"Ayağım takıldı!\", \"Ders Saati ':' içermelidir.\", \"error\");", true);
+            }
         }
-        catch
-        {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorAddLessons", "swal(\"Good job!\", \"İşlem başarısız.Bağlantı sorunum olabilir!\", \"success\");", true);
-        }
+
+
+
     }
 
     public void getAcademician()
