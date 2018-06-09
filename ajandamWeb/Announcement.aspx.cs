@@ -52,8 +52,13 @@ public partial class Lessons : System.Web.UI.Page
         }
         else
         {
+            string email = Session["username"].ToString();
+            double n;
+            bool isNumeric = double.TryParse(email, out n);
+
+
             object user = Session["name"];
-            if (user.ToString() == "Sistem")
+            if (user.ToString() == "Sistem" || isNumeric == true)
             {
                 Response.Redirect("Login.aspx");
             }

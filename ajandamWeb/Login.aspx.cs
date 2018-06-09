@@ -69,8 +69,6 @@ public partial class Login : System.Web.UI.Page
                         Response.Redirect("Lessons.aspx");
                 }
 
-
-
                 
             }
         }

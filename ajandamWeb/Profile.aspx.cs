@@ -13,8 +13,11 @@ public partial class AdminLayout : System.Web.UI.Page
     {
 
         object userName = Session["username"];
+        string email = Session["username"].ToString();
+        double n;
+        bool isNumeric = double.TryParse(email, out n);
 
-        if (userName == null)
+        if (userName == null || isNumeric == true)
         {
 
             Response.Redirect("Login.aspx");
