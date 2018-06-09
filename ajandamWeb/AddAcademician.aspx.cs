@@ -36,7 +36,7 @@ public partial class Admin : System.Web.UI.Page
 
     protected void btnAddAcademician_ServerClick(object sender, EventArgs e)
     {
-        if (String.IsNullOrEmpty(exampleInputAcademicianName.Value) || String.IsNullOrEmpty(exampleInputAcademicianSurname.Value) || String.IsNullOrEmpty(exampleInputAcademicianUsername.Value))
+        if ((exampleInputAcademicianName.Value) == "" ||(exampleInputAcademicianSurname.Value) == "" || (exampleInputAcademicianUsername.Value) == "")
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorAddAcademicianNull", "swal(\"Ayağım takıldı!\", \"Ünvan, Akademisyen Adı Soyadı veya Kullanıcı adı boş olamaz!\", \"error\");", true);
         }
@@ -47,28 +47,30 @@ public partial class Admin : System.Web.UI.Page
             string academicianSurname = exampleInputAcademicianSurname.Value;
             string academicianuserName = exampleInputAcademicianUsername.Value;
             addAcademicianJsonBody = $"{{\"name\":\"{academicianTitle + " " + academicianName}\",\"surname\":\"{academicianSurname}\",\"username\":\"{academicianuserName}\"}}";
-        }
 
-        try
-        {
-            string Url = "https://spring-kou-service.herokuapp.com/api/academician/saveAcademician";
-            using (WebClient wc = new WebClient())
+            try
             {
-                wc.Headers[HttpRequestHeader.ContentType] = "application/json";
-                wc.Encoding = System.Text.Encoding.Unicode;
-                wc.UploadString(Url, addAcademicianJsonBody);
+                string Url = "https://spring-kou-service.herokuapp.com/api/academician/saveAcademician";
+                using (WebClient wc = new WebClient())
+                {
+                    wc.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    wc.Encoding = System.Text.Encoding.Unicode;
+                    wc.UploadString(Url, addAcademicianJsonBody);
+                }
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "SuccessAddAcademician", "swal(\"Good job!\", \"Akademisyen ekleme işlemi başarılı!\", \"success\");", true);
+                exampleInputAcademicianName.Value = null;
+                exampleInputAcademicianSurname.Value = null;
+                exampleInputAcademicianUsername.Value = null;
+
+
             }
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "SuccessAddAcademician", "swal(\"Good job!\", \"Akademisyen ekleme işlemi başarılı!\", \"success\");", true);
-            exampleInputAcademicianName.Value = null;
-            exampleInputAcademicianSurname.Value = null;
-            exampleInputAcademicianUsername.Value = null;
-
-
+            catch
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorAddAcademician", "swal(\"Ayağım takıldı!\", \"İşlem başarısız.Bağlantı sorunum olabilir!\", \"error\");", true);
+            }
         }
-        catch
-        {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorAddAcademician", "swal(\"Good job!\", \"İşlem başarısız.Bağlantı sorunum olabilir!\", \"success\");", true);
-        }
+
+        
     }
 
 }

@@ -242,18 +242,5 @@
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
 </body>
-
-<%--    <script>
-        function getText(id) {
-
-            var labelTitle = $("#" + id).text();
-            var labelContent = $("#a" + id).text();
-            var labelDate = $("#d" + id).text();
-            $("#AnnouncementTitle").text(labelTitle);
-            $("#AnnouncementContent").text(labelContent);
-            $("#AnnouncementDate").text(labelDate);
-            $('#jsShowAnnouncement').modal('show'); 
-        }
-    </script>--%>
 </html>
 
