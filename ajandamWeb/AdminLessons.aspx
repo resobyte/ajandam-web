@@ -288,9 +288,17 @@
             url: 'https://spring-kou-service.herokuapp.com/api/lesson/deleteLesson?lessonId=' + id + '',
 
             success: function (data) {
-                swal("Good job!", "Ders silme işlemi başarılı!", "success");
-                window.location.reload();
+
+                if (data == false) {
+                    swal("Error!", "Ters giden bir şeyler var!", "error");
+                }
+                else {
+                    swal("Good job!", "Ders silme işlemi başarılı!", "success");
+                    window.location.reload();
+                }
+                
             }
+           
         });
 
     }
