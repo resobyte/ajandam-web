@@ -280,28 +280,49 @@
     <script src="js/custom.min.js"></script>
 </body>
 <script>
+
+
+
+
     var lessonId;
 
     function deleteLesson(id) {
-        $.ajax({
-            type: "POST",
-            url: 'https://spring-kou-service.herokuapp.com/api/lesson/deleteLesson?lessonId=' + id + '',
+        
+      
+        swal({
+            title: "Emin misiniz?",
+            text: "Bu dersi silmek istediğinizden emin misiniz!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'Evet, eminim!',
+            cancelButtonText: "Hayır, vazgeçtim!"
+        }).then(result => {
+            if (result.value) {
+                $.ajax({
+                    type: "POST",
+                    url: 'https://spring-kou-service.herokuapp.com/api/lesson/deleteLesson?lessonId=' + id + '',
 
-            success: function (data) {
+                    success: function (data) {
 
-                if (data == false) {
-                    swal("Error!", "Ters giden bir şeyler var!", "error");
-                }
-                else {
-                    swal("Good job!", "Ders silme işlemi başarılı!", "success");
-                    window.location.reload();
-                }
-                
+                        if (data == false) {
+                            swal("Error!", "Ters giden bir şeyler var!", "error");
+                        }
+                        else {
+                            swal("Good job!", "Ders silme işlemi başarılı!", "success");
+                            window.location.reload();
+                        }
+
+                    }
+
+                });
+            } else {
+                swal("Error!", "Silme isteği reddedildi.", "error");
             }
-           
-        });
-
+        })
     }
+
+
     function openModal(id) {
 
         $("#lessonAcademician").empty();
