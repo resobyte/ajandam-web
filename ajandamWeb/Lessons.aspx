@@ -219,19 +219,8 @@
                             <div class="modal-body">
                                 <div class="container">
 
-                                    <table class="table">
-                                        <thead id="head">
-                                            <tr>
-                                                <th>Numarası</th>
-                                                <th>Adı</th>
-                                                <th>Soyadı</th>
-                                                <th>Devam Bilgisi</th>
-                                                <th>Devamsızlık Bilgisi</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tBody">
-                                        </tbody>
+                                    <table class="table" id="lessonsTable">
+                                       
                                     </table>
                                 </div>
 
@@ -331,31 +320,35 @@
     }
     function goPost(id) {
 
-        var nullReference = document.getElementById("nullReference");
-        var tbody = document.getElementById("tBody tr");
-        var head = document.getElementById("head");
+     
         
         $.ajax({
             type: "GET",
             url: 'https://spring-kou-service.herokuapp.com/api/lesson/rollcall?lessonId=' + id,
             success: function (data) {
 
+                $("#lessonsTable").empty();
                 if (undefined !== data.ogrenci_devam_bilgileri) {
                     $("#detailLessonModalLabel").text(data.ogrenci_devam_bilgileri[0].devamsizlik.dersAdi);
-                    tbody.remove();
-                    nullReference.remove();
+                    
                     for (i = 0; i < data.ogrenci_devam_bilgileri.length; i++) {
 
-                        $("#tBody").append('<tr><th>' + data.ogrenci_devam_bilgileri[i].ogrenci.number + '</th><th>' + data.ogrenci_devam_bilgileri[i].ogrenci.name + '</th><th>' + data.ogrenci_devam_bilgileri[i].ogrenci.surname + '</th><th>' + data.ogrenci_devam_bilgileri[i].devamsizlik.devamBilgisi + '</th><th>' + data.ogrenci_devam_bilgileri[i].devamsizlik.devamsizlikBilgisi + '</th></tr>')
+                        if (i == 0) {
+                            $("#lessonsTable").append('<thead id="head"><tr><th>Numarası</th><th>Adı</th><th>Soyadı</th><th>Devam Bilgisi</th><tr></thead><tbody id="tBody">');
+                        }
+
+                        $("#lessonsTable").append('<tr><th>' + data.ogrenci_devam_bilgileri[i].ogrenci.number + '</th><th>' + data.ogrenci_devam_bilgileri[i].ogrenci.name + '</th><th>' + data.ogrenci_devam_bilgileri[i].ogrenci.surname + '</th><th>' + data.ogrenci_devam_bilgileri[i].devamsizlik.devamBilgisi + '</th></tr>')
+
+                        if (i == data.ogrenci_devam_bilgileri.length - 1) {
+                            $("#lessonsTable").append('</tbody>');
+                        }
 
                     }
                 }
                 else {
-                    tbody.remove();
-                    head.remove();
-                    nullReference.remove();
 
-                    $("#tBody").append('<div id="nullReference"><b>Bu derse kayıtlı öğrenci bulunmamaktadır. Derse öğrenci eklemek için <a href="#addLesson" onclick="hideDiv()" class="link" data-toggle="modal">tıklayınız.</a></b></div>');
+                    $("#detailLessonModalLabel").text(document.getElementById(id).textContent);
+                    $("#lessonsTable").append('<div id="nullReference"><b>Bu derse kayıtlı öğrenci bulunmamaktadır. Derse öğrenci eklemek için <a href="#addLesson" onclick="hideDiv()" class="link" data-toggle="modal">tıklayınız.</a></b></div>');
                 }
             }
         });
