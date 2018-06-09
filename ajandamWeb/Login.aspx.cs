@@ -33,7 +33,7 @@ public partial class Login : System.Web.UI.Page
             wc.Encoding = System.Text.Encoding.UTF8;
             string HtmlResult = wc.UploadString(Url, myParameters);
             JObject rss = JObject.Parse(HtmlResult);
-            
+
             if (HtmlResult == "{}")
             {
                 alertMessage.Style.Remove("display");
@@ -50,12 +50,28 @@ public partial class Login : System.Web.UI.Page
                 Session.Add("name", rssName);
                 Session.Add("surname", rssSurname);
                 Session.Add("ID", ID);
-
-                if (rssName == "Sistem")
-                    Response.Redirect("AdminLessons.aspx");
+                double n;
+                bool isNumeric = double.TryParse(email, out n);
+                
+                if(isNumeric == true)
+                {
+                    alertMessage.Style.Remove("display");
+                    string errorMessage = "<div style='text-align:center' class='alert alert-danger'><b>Giriş yetkiniz yok!<b></div>";
+                    alertMessage.InnerHtml = errorMessage;
+                }
 
                 else
-                    Response.Redirect("Lessons.aspx");
+                {
+                    if (rssName == "Sistem")
+                        Response.Redirect("AdminLessons.aspx");
+
+                    else
+                        Response.Redirect("Lessons.aspx");
+                }
+
+
+
+                
             }
         }
 

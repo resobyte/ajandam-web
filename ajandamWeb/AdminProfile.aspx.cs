@@ -66,11 +66,9 @@ public partial class AdminLayout : System.Web.UI.Page
 
     protected void updatePassword_ServerClick(object sender, EventArgs e)
     {
-        
 
         if ((newPassword.Value) == "" || (oldPassword.Value) == "" || (newPasswordAgain.Value) =="")
         {
-
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorUpdatePasswordNull", "swal(\"Ayağım takıldı!\", \"Değerler boş geçilemez\", \"error\");", true);
         }
         else
