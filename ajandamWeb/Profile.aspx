@@ -134,7 +134,7 @@
             <!-- Bottom points-->
             <div class="sidebar-footer">
                 <!-- item-->
-                <a href="AdminProfile.aspx" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
+                <a href="Profile.aspx" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
 
                 <!-- item-->
                 <a href="Session.aspx" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
