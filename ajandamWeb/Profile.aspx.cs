@@ -87,7 +87,7 @@ public partial class AdminLayout : System.Web.UI.Page
                         }
                         else
                         {
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorUpdatePasword", "swal(\"Good job!\", \"Eski girdiğiniz şifre yanlış.\", \"errpor\");", true);
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorUpdatePasword", "swal(\"Ayağım takıldı!\", \"Eski girdiğiniz şifre yanlış.\", \"error\");", true);
                         }
                         
                     }
