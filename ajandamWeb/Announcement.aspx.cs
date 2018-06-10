@@ -36,7 +36,7 @@ public partial class Lessons : System.Web.UI.Page
 
 
     protected void Page_Load(object sender, EventArgs e)
-    {   
+    {
         lessonName.Clear();
         lessonClock.Clear();
         lessonDay.Clear();
@@ -97,8 +97,8 @@ public partial class Lessons : System.Web.UI.Page
             for (int i = 0; i < AnnouncementTitle.Count; i++)
             {
                 lessonsDiv += $"<tr><td><a href='#' onclick='getText(this.id)' id='{AnnouncementId[i]}'>{AnnouncementTitle[i]}</a></td><td><p id='a{AnnouncementId[i]}'>{AnnouncementContent[i]}</p></td><td><p id='d{AnnouncementId[i]}'>{AnnouncementDate[i]}<p></td><td>{AnnouncementLesson[i]}</td></tr>";
-                
-                
+
+
             }
             lessonsDiv += "</tbody></table>";
             myAnnouncement.InnerHtml = lessonsDiv;
@@ -107,8 +107,8 @@ public partial class Lessons : System.Web.UI.Page
     }
 
     protected void btnInsertAnnouncement_ServerClick(object sender, EventArgs e)
-    {  
-
+    {
+        var responseData = "";
         if (String.IsNullOrEmpty(MyAnnouncementTitle.Value) || String.IsNullOrEmpty(MyAnnouncementBody.Value))
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorPageAnnouncement", "swal(\"Ayağım takıldı!\", \"Duyuru başlığı veya Duyuru içeriği boş olamaz!\", \"error\");", true);
@@ -124,13 +124,21 @@ public partial class Lessons : System.Web.UI.Page
             {
                 wc.Headers[HttpRequestHeader.ContentType] = "application/json";
                 wc.Encoding = System.Text.Encoding.Unicode;
-                wc.UploadString(Url, insertAnnouncementjson);
+                responseData = wc.UploadString(Url, insertAnnouncementjson);
+            }
+            if (responseData != "false")
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "SuccessPageAnnouncement", "swal(\"İşlem tamam!\", \"Duyurunuz başarı ile iletildi.\", \"success\");", true);
+                formAnnouncement.Controls.Clear();
+                Response.Redirect("Announcement.aspx");
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ErrorPageAnnouncement", "swal(\"Ayağım takıldı!\", \"Duyuru atılırken bir problemle karşılaşıldı.\", \"success\");", true);
             }
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "SuccessPageAnnouncement", "swal(\"İşlem tamam!\", \"Duyurunuz başarı ile iletildi.\", \"success\");", true);
 
-            formAnnouncement.Controls.Clear();
-            Response.Redirect("Announcement.aspx");
+
 
         }
     }

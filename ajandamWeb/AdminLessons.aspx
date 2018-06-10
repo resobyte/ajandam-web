@@ -227,7 +227,7 @@
                                 </form>
                             </div>
                             <div class="modal-footer" id="btnDiv">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
 
                             </div>
                         </div>
@@ -280,10 +280,6 @@
     <script src="js/custom.min.js"></script>
 </body>
 <script>
-
-
-
-
     var lessonId;
 
     function deleteLesson(id) {
@@ -321,8 +317,6 @@
             }
         })
     }
-
-
     function openModal(id) {
 
         $("#lessonAcademician").empty();

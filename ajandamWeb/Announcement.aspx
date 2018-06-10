@@ -221,11 +221,13 @@
                             </div>
                             <div class="modal-body">
                                 <p id="AnnouncementContent"></p>
+                                 <p id="AnnouncementDate"></p>
                             </div>
                             <div class="modal-footer">
 
-                                <p id="AnnouncementDate"></p>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                               
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+
                             </div>
                         </div>
 
