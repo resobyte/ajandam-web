@@ -389,7 +389,7 @@
     function getAcademician(lessonAcademicianId) {
         $.ajax({
             type: "GET",
-            url: 'http://spring-kou-service.herokuapp.com/api/academician/getAcademicians',
+            url: 'https://spring-kou-service.herokuapp.com/api/academician/getAcademicians',
 
             success: function (data) {
 
