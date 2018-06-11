@@ -152,7 +152,7 @@ public partial class Lessons : System.Web.UI.Page
         {
             if (MyLessonFileUpload.HasFile)
             {
-                string csvPath = @"C:\Users\resobyte\Desktop" + Path.GetFileName(MyLessonFileUpload.PostedFile.FileName);
+                string csvPath = Server.MapPath("~/csv/") + Path.GetFileName(MyLessonFileUpload.PostedFile.FileName);
                 MyLessonFileUpload.SaveAs(csvPath);
 
                 string jsn;
